@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGO_URL,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+  .catch((err) => console.log('Connexion à MongoDB échouée ! :',err.message));
 
 const server = app.listen(process.env.PORT, () => {
   console.log(`server actif au Port ${process.env.PORT}`);
