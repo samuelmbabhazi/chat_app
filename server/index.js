@@ -7,6 +7,12 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+mongoose.connect(process.env.MONGO_URL,
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
 const server = app.listen(process.env.PORT, () => {
   console.log(`server actif au Port ${process.env.PORT}`);
 });
