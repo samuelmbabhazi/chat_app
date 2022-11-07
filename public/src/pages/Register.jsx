@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Await, Link } from "react-router-dom";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios"
+import { registerRouter } from "../utils/ApiRoute";
 const Register = () => {
   const [values, setValues] = useState({
     username: "",
@@ -17,9 +19,17 @@ const Register = () => {
     draggable: true,
     theme: "dark",
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    handleValidation();
+    if ( handleValidation()) {
+      const { confirmpassword, password, username, email } = values;
+      const {data}= await axios.post(registerRouter,{
+        username,
+        email,
+        password
+      })
+    }
+   ;
   };
   const handleValidation = (event) => {
     const { confirmpassword, password, username, email } = values;
@@ -31,6 +41,9 @@ const Register = () => {
       return false;
     } else if (password.length < 8) {
       toast.error("username should be greater than 8 character", toastOption);
+      return false;
+    } else if (email==="") {
+      toast.error("email is required", toastOption);
       return false;
     }
     return true;
