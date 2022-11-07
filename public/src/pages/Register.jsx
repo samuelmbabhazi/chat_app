@@ -20,11 +20,8 @@ const Register = () => {
 
     console.log("is in validation", registerRouter);
     const { password, username, email } = values;
-    const { data } = await axios.post(registerRouter, {
-      username,
-      email,
-      password,
-    });
+    console.log(values);
+    const { data } = await axios.post(registerRouter, values);
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
     }
@@ -52,7 +49,7 @@ const Register = () => {
   //   return true;
   // };
   const handleChange = (event) => {
-    setValues({ ...values, [event.target.name]: [event.target.value] });
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
   return (
     <>
