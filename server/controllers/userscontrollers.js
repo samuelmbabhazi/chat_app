@@ -17,8 +17,33 @@ module.exports.register = async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = User.create({
-      email,
-      username,
+      email: email,
+      username: username,
+      password: hashedPassword,
+    });
+    delete user.password;
+    res.json({ status: true, user });
+  } catch (ex) {
+    next(ex);
+  }
+};
+
+module.exports.Login = async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    const users = await User.findOne({ username });
+
+    if (!users) {
+      return res.json({
+        message: "Incorrect username or password",
+        status: false,
+      });
+    }
+    const isPasswordValide = await bcrypt.hash.compare(password, user.password);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = User.create({
+      email: email,
+      username: username,
       password: hashedPassword,
     });
     delete user.password;

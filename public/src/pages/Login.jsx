@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { registerRouter } from "../utils/ApiRoute";
+import { loginRouter } from "../utils/ApiRoute";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,10 +18,13 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("is in validation", registerRouter);
+    console.log("is in validation", loginRouter);
     const { password, username, email } = values;
     console.log(values);
-    const { data } = await axios.post(registerRouter, values);
+    const { data } = await axios.post(loginRouter, {
+      username,
+      password,
+    });
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
     }
@@ -109,7 +112,8 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    border: 0.1rem solid gray;
+    border: none;
+    /* border: 0.1rem solid gray; */
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
@@ -144,7 +148,8 @@ const FormContainer = styled.div`
     }
     span {
       color: gray;
-      text-transform: uppercase;
+      font-size: 15;
+
       a {
         color: #4e0eff;
         text-decoration: none;

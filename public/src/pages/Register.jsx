@@ -21,7 +21,11 @@ const Register = () => {
     console.log("is in validation", registerRouter);
     const { password, username, email } = values;
     console.log(values);
-    const { data } = await axios.post(registerRouter, values);
+    const { data } = await axios.post(registerRouter, {
+      username,
+      email,
+      password,
+    });
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
     }
@@ -83,7 +87,7 @@ const Register = () => {
             name="confirmpassword"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Create User</button>
+          <button type="submit">signup</button>
           <span>
             Already have an account ? <Link to={"/login"}>Login</Link>
           </span>
@@ -119,7 +123,8 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    border: 0.1rem solid gray;
+    /* border: 1px solid gray; */
+    border: none;
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
@@ -154,7 +159,7 @@ const FormContainer = styled.div`
     }
     span {
       color: gray;
-      text-transform: uppercase;
+      font-size: 15px;
       a {
         color: #4e0eff;
         text-decoration: none;
