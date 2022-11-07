@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Await, Link } from "react-router-dom";
 import styled from "styled-components";
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { registerRouter } from "../utils/ApiRoute";
@@ -13,23 +13,23 @@ const Register = () => {
     password: "",
     confirmpassword: "",
   });
-  const toastOption = {
-    position: "bottom-right",
-    autoClose: 8000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: "dark",
-  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("is in validation",registerRouter);
-    const { confirmpassword, password, username, email } = values;
+    console.log("is in validation", registerRouter);
+    const { password, username, email } = values;
     const { data } = await axios.post(registerRouter, {
       username,
       email,
       password,
     });
+    if (data.status === false) {
+      console.log("une erreur c'est produite au niveau des data");
+    }
+    if (data.status === true) {
+      localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+    }
   };
   // const handleValidation = (event) => {
   //   const { confirmpassword, password, username, email } = values;
