@@ -23,7 +23,7 @@ module.exports.register = async (req, res, next) => {
     });
     delete user.password;
     res.json({ status: true, user });
-  } catch (error) {
-    next(err);
+  } catch (ex) {
+    next(ex);
   }
 };
