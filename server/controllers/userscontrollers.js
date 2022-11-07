@@ -31,21 +31,21 @@ module.exports.register = async (req, res, next) => {
 module.exports.Login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    const users = await User.findOne({ username });
+    const user = await User.findOne({ username });
 
-    if (!users) {
+    if (!user) {
       return res.json({
         message: "Incorrect username or password",
         status: false,
       });
     }
-    const isPasswordValide = await bcrypt.hash.compare(password, user.password);
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = User.create({
-      email: email,
-      username: username,
-      password: hashedPassword,
-    });
+    const isPasswordValide = await bcrypt.compare(password, user.password);
+    if (isPasswordValide) {
+      return res.json({
+        message: "Incorrect username or password",
+        status: false,
+      });
+    }
     delete user.password;
     res.json({ status: true, user });
   } catch (ex) {

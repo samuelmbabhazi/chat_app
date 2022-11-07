@@ -123,8 +123,8 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    /* border: 1px solid gray; */
-    border: none;
+    border: 1px solid blue;
+
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
@@ -160,6 +160,7 @@ const FormContainer = styled.div`
     span {
       color: gray;
       font-size: 15px;
+      text-transform: uppercase;
       a {
         color: #4e0eff;
         text-decoration: none;

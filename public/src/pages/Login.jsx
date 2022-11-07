@@ -10,16 +10,15 @@ const Login = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     username: "",
-    email: "",
+
     password: "",
-    confirmpassword: "",
   });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     console.log("is in validation", loginRouter);
-    const { password, username, email } = values;
+    const { password, username } = values;
     console.log(values);
     const { data } = await axios.post(loginRouter, {
       username,
@@ -113,7 +112,7 @@ const FormContainer = styled.div`
     flex-direction: column;
     gap: 2rem;
     border: none;
-    /* border: 0.1rem solid gray; */
+    border: 0.1rem solid blue;
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
@@ -149,6 +148,7 @@ const FormContainer = styled.div`
     span {
       color: gray;
       font-size: 15;
+      text-transform: uppercase;
 
       a {
         color: #4e0eff;
