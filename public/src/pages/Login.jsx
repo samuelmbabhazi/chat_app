@@ -79,6 +79,7 @@ const Login = () => {
             Dont have an account ? <Link to={"/register"}>Signup</Link>
           </span>
         </form>
+        <img src="s2.svg" alt="" width={500} />
       </FormContainer>
     </>
   );
@@ -88,7 +89,7 @@ const FormContainer = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   gap: 1rem;
   align-items: center;
@@ -124,12 +125,12 @@ const FormContainer = styled.div`
       width: 100%;
       font-size: 0.7rem;
       &:focus {
-        border: 0.1rem solid blueviolet;
+        border: 0.1rem solid #4d00c2;
         outline: none;
       }
     }
     button {
-      background-color: #a068f8;
+      background-color: #4d00c2;
       color: white;
       padding: 1rem 2rem;
       border: none;
@@ -140,9 +141,9 @@ const FormContainer = styled.div`
       text-transform: uppercase;
       transition: 0.5s ease-in-out;
       &:hover {
-        border: 0.1rem solid #a068f8;
+        border: 0.1rem solid #4d00c2;
         background-color: transparent;
-        color: #a068f8;
+        color: #4d00c2;
       }
     }
     span {
@@ -151,9 +152,10 @@ const FormContainer = styled.div`
       text-transform: uppercase;
 
       a {
-        color: #a068f8;
+        color: #4d00c2;
         text-decoration: none;
         font-weight: bold;
+        cursor: pointer;
       }
     }
   }
