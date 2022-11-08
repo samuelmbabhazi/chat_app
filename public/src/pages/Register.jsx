@@ -30,6 +30,7 @@ const Register = () => {
       console.log("une erreur c'est produite au niveau des data");
     }
     if (data.status === true) {
+      console.log("bien enregistre");
       localStorage.setItem("chat-app-user", JSON.stringify(data.user));
       navigate("/");
     }
@@ -105,7 +106,7 @@ const FormContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: white;
+  background-color: #000000f2;
   .brand {
     display: flex;
     align-items: center;
@@ -120,6 +121,7 @@ const FormContainer = styled.div`
     }
   }
   form {
+    height: 98vh;
     display: flex;
     flex-direction: column;
     gap: 2rem;
