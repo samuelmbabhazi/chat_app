@@ -10,7 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     username: "",
-
     password: "",
   });
 
@@ -58,7 +57,7 @@ const Login = () => {
       <FormContainer>
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            <img src="" alt="" />
+            <img src="logo.png" alt="" />
             <h1>GoChat</h1>
           </div>
           <input
@@ -93,7 +92,8 @@ const FormContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #000000f2;
+  background-color: #000000ce;
+
   .brand {
     display: flex;
     align-items: center;
@@ -103,7 +103,7 @@ const FormContainer = styled.div`
       height: 5rem;
     }
     h1 {
-      color: blue;
+      color: white;
       text-transform: uppercase;
     }
   }
@@ -112,13 +112,13 @@ const FormContainer = styled.div`
     flex-direction: column;
     gap: 2rem;
     border: none;
-    border: 0.1rem solid blue;
+
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
       background-color: transparent;
       padding: 1rem;
-      border: 0.1rem solid #4e0eff;
+      border: 0.1rem solid white;
       border-radius: 0.4rem;
       color: gray;
       width: 100%;
@@ -129,7 +129,7 @@ const FormContainer = styled.div`
       }
     }
     button {
-      background-color: blue;
+      background-color: #a068f8;
       color: white;
       padding: 1rem 2rem;
       border: none;
@@ -140,9 +140,9 @@ const FormContainer = styled.div`
       text-transform: uppercase;
       transition: 0.5s ease-in-out;
       &:hover {
-        border: 0.1rem solid blue;
+        border: 0.1rem solid #a068f8;
         background-color: transparent;
-        color: blue;
+        color: #a068f8;
       }
     }
     span {
@@ -151,7 +151,7 @@ const FormContainer = styled.div`
       text-transform: uppercase;
 
       a {
-        color: #4e0eff;
+        color: #a068f8;
         text-decoration: none;
         font-weight: bold;
       }
