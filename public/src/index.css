@@ -9,7 +9,7 @@ body {
   overflow: hidden;
   position: relative;
 
-  /* background-image: url("../public/s3.svg"); */
+  background-image: url("../public/bg.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
