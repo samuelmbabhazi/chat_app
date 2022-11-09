@@ -63,3 +63,14 @@ module.exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.getusers = async (req, res, next) => {
+  const allUsers = await User.find();
+  try {
+    if (allUsers) {
+      res.json({ status: true, allUsers });
+    }
+  } catch (error) {
+    next(error);
+  }
+};

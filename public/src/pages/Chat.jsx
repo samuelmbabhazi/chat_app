@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { usersRouter } from "../utils/ApiRoute";
+import { useNavigate } from "react-router-dom";
 
 const Chat = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    axios
+      .get(usersRouter)
+      .then(function (response) {
+        // handle success
+        setUsers(response.data.allUsers);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  });
+
+  // console.log("waaaa", users);
+
   return (
     <Container>
       <div class="flex h-screen antialiased text-gray-800">
@@ -30,7 +49,7 @@ const Chat = () => {
 
             <div class="flex flex-col mt-8">
               <div class="flex flex-row items-center justify-between text-xs">
-                <span class="font-bold">Active Conversations</span>
+                <span class="font-bold">Conversations</span>
                 <span class="flex items-center justify-center bg-[blue] h-4 w-4 rounded-full">
                   4
                 </span>
@@ -39,42 +58,22 @@ const Chat = () => {
                 id="contact"
                 class="flex flex-col space-y-1 mt-4 -mx-2 h-60 overflow-y-auto "
               >
-                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue] p-2">
-                  <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                    A
-                  </div>
-                  <div class="ml-2 text-sm font-semibold">Arick</div>
-                  <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
-                    10
-                  </div>
-                </button>
-                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
-                  <div class="flex items-center justify-center h-8 w-8 bg-gray-200 rounded-full">
-                    C
-                  </div>
-                  <div class="ml-2 text-sm font-semibold">Cedrick</div>
-                  <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
-                    2
-                  </div>
-                </button>
-                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
-                  <div class="flex items-center justify-center h-8 w-8 bg-orange-200 rounded-full">
-                    G
-                  </div>
-                  <div class="ml-2 text-sm font-semibold">Gloire</div>
-                </button>
-                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
-                  <div class="flex items-center justify-center h-8 w-8 bg-pink-200 rounded-full">
-                    C
-                  </div>
-                  <div class="ml-2 text-sm font-semibold">Chambu</div>
-                </button>
-                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
-                  <div class="flex items-center justify-center h-8 w-8 bg-purple-200 rounded-full">
-                    S
-                  </div>
-                  <div class="ml-2 text-sm font-semibold">Shako</div>
-                </button>
+                {users &&
+                  users.map((name, index) => {
+                    return (
+                      <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
+                        <div class="flex items-center justify-center h-8 w-8 bg-[blue] rounded-full">
+                          {name.username[0].toUpperCase()}
+                        </div>
+                        <div class="ml-2 text-sm font-semibold">
+                          {name.username}
+                        </div>
+                        <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
+                          2
+                        </div>
+                      </button>
+                    );
+                  })}
               </div>
               <div class="flex flex-row items-center justify-between text-xs mt-6">
                 <span class="font-bold">Archivied</span>
