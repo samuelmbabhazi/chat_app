@@ -2,6 +2,7 @@ const User = require("../model/usermodel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+//controller signup
 module.exports.signup = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
@@ -23,12 +24,21 @@ module.exports.signup = async (req, res, next) => {
       password: hashedPassword,
     });
     delete user.password;
-    res.json({ status: true, user });
+    // res.json({ status: true, user });
+    res.json({
+      status: true,
+      userId: user._id,
+      token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+        expiresIn: "24h",
+      }),
+    });
+    console.log(token);
   } catch (err) {
     next(err);
   }
 };
 
+//controllers login
 module.exports.login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
@@ -48,12 +58,7 @@ module.exports.login = async (req, res, next) => {
       });
     }
     delete user.password;
-    res.status(200).json({
-      userId: user._id,
-      token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
-        expiresIn: "24h",
-      }),
-    });
+    res.json({ status: true, user });
   } catch (err) {
     next(err);
   }

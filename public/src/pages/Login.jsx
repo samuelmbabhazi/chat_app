@@ -39,7 +39,7 @@ const Login = () => {
       <FormContainer>
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            <img src="logo.png" alt="" />
+            <img src="logo.png" alt="" width={70} />
             <h1>
               GoChat<span>42</span>
             </h1>
@@ -60,7 +60,7 @@ const Login = () => {
 
           <button type="submit">Login</button>
           <span>
-            Dont have an account ? <Link to={"/register"}>Signup</Link>
+            Dont have an account ? <Link to={"/signup"}>Signup</Link>
           </span>
         </form>
         <div className="text">
@@ -87,8 +87,8 @@ const FormContainer = styled.div`
   background-color: #000000ce;
   .text {
     h1 {
-      font-size: 50px;
-      width: 300px;
+      font-size: 45px;
+      width: 330px;
       font-size: 72px;
       font-weight: bold;
       background: -webkit-linear-gradient(#eee, #4d00c2);
@@ -112,6 +112,8 @@ const FormContainer = styled.div`
     h1 {
       color: white;
       text-transform: uppercase;
+      font-size: 30px;
+      font-weight: bold;
       span {
         font-size: 15px;
         color: #4d00c2;
@@ -123,7 +125,6 @@ const FormContainer = styled.div`
     flex-direction: column;
     gap: 2rem;
     border: none;
-    background-color: #000000ce;
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {

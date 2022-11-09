@@ -55,7 +55,7 @@ const Register = () => {
 
         <form id="form" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            <img src="logo.png" alt="" />
+            <img src="logo.png" alt="" width={70} />
             <h1>
               GoChat<span>42</span>
             </h1>
@@ -132,7 +132,8 @@ const Container = styled.div`
     }
     h1 {
       font-size: 50px;
-      width: 300px;
+      font-weight: bold;
+      width: 350px;
       font-size: 72px;
       background: -webkit-linear-gradient(#eee, #4d00c2);
       -webkit-background-clip: text;
@@ -153,6 +154,8 @@ const Container = styled.div`
       height: 5rem;
     }
     h1 {
+      font-weight: bold;
+      font-size: 30px;
       color: white;
       text-transform: uppercase;
       span {
@@ -165,7 +168,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    background-color: #000000ce;
+
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
