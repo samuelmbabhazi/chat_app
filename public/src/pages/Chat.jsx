@@ -31,58 +31,61 @@ const Chat = () => {
             <div class="flex flex-col mt-8">
               <div class="flex flex-row items-center justify-between text-xs">
                 <span class="font-bold">Active Conversations</span>
-                <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
+                <span class="flex items-center justify-center bg-[blue] h-4 w-4 rounded-full">
                   4
                 </span>
               </div>
-              <div class="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+              <div
+                id="contact"
+                class="flex flex-col space-y-1 mt-4 -mx-2 h-60 overflow-y-auto "
+              >
+                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue] p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                    H
+                    A
                   </div>
                   <div class="ml-2 text-sm font-semibold">Arick</div>
-                  <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-4 w-4 rounded leading-none">
+                  <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
                     10
                   </div>
                 </button>
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-gray-200 rounded-full">
-                    M
+                    C
                   </div>
                   <div class="ml-2 text-sm font-semibold">Cedrick</div>
-                  <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-4 w-4 rounded leading-none">
+                  <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
                     2
                   </div>
                 </button>
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-orange-200 rounded-full">
-                    P
+                    G
                   </div>
                   <div class="ml-2 text-sm font-semibold">Gloire</div>
                 </button>
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-pink-200 rounded-full">
                     C
                   </div>
                   <div class="ml-2 text-sm font-semibold">Chambu</div>
                 </button>
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-purple-200 rounded-full">
-                    J
+                    S
                   </div>
                   <div class="ml-2 text-sm font-semibold">Shako</div>
                 </button>
               </div>
               <div class="flex flex-row items-center justify-between text-xs mt-6">
                 <span class="font-bold">Archivied</span>
-                <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
+                <span class="flex items-center justify-center bg-[blue] h-4 w-4 rounded-full">
                   7
                 </span>
               </div>
               <div class="flex flex-col space-y-1 mt-4 -mx-2">
-                <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue] p-2">
                   <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                    H
+                    C
                   </div>
                   <div class="ml-2 text-sm font-semibold">Credo</div>
                 </button>
@@ -91,13 +94,20 @@ const Chat = () => {
           </div>
           <div class="flex flex-col flex-auto h-full p-6 ">
             <div class="flex flex-col flex-auto flex-shrink-0  bg-[ #000000ce] h-full p-4">
-              <div class="flex flex-col h-full overflow-x-auto mb-4">
+              <div
+                id="contact"
+                class="flex flex-col h-full overflow-x-auto mb-4"
+              >
                 <div class="flex flex-col h-full">
                   <div class="grid grid-cols-12 gap-y-2">
                     <div class="col-start-1 col-end-8 p-3 rounded-lg">
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
+                          <img
+                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            alt="Avatar"
+                            class="h-full w-full rounded-full"
+                          />
                         </div>
                         <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                           <div>Hey How are you today?</div>
@@ -107,7 +117,11 @@ const Chat = () => {
                     <div class="col-start-1 col-end-8 p-3 rounded-lg">
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
+                          <img
+                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            alt="Avatar"
+                            class="h-full w-full rounded-full"
+                          />
                         </div>
                         <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                           <div>
@@ -121,7 +135,11 @@ const Chat = () => {
                     <div class="col-start-6 col-end-13 p-3 rounded-lg">
                       <div class="flex items-center justify-start flex-row-reverse">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
+                          <img
+                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            alt="Avatar"
+                            class="h-full w-full rounded-full"
+                          />
                         </div>
                         <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
                           <div>I'm ok what about you?</div>
@@ -131,7 +149,11 @@ const Chat = () => {
                     <div class="col-start-6 col-end-13 p-3 rounded-lg">
                       <div class="flex items-center justify-start flex-row-reverse">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
+                          <img
+                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            alt="Avatar"
+                            class="h-full w-full rounded-full"
+                          />
                         </div>
                         <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
                           <div>
@@ -144,7 +166,11 @@ const Chat = () => {
                     <div class="col-start-1 col-end-8 p-3 rounded-lg">
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
+                          <img
+                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            alt="Avatar"
+                            class="h-full w-full rounded-full"
+                          />
                         </div>
                         <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                           <div>Lorem ipsum dolor sit amet !</div>
@@ -154,7 +180,11 @@ const Chat = () => {
                     <div class="col-start-6 col-end-13 p-3 rounded-lg">
                       <div class="flex items-center justify-start flex-row-reverse">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
+                          <img
+                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            alt="Avatar"
+                            class="h-full w-full rounded-full"
+                          />
                         </div>
                         <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
                           <div>
@@ -170,7 +200,11 @@ const Chat = () => {
                     <div class="col-start-1 col-end-8 p-3 rounded-lg">
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
+                          <img
+                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            alt="Avatar"
+                            class="h-full w-full rounded-full"
+                          />
                         </div>
                         <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                           <div>
@@ -259,6 +293,14 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: #000000e6;
+  #contact {
+    &::-webkit-scrollbar {
+      width: 0.2rem;
+      &-thumb {
+        background-color: blue;
+      }
+    }
+  }
 `;
 
 export default Chat;
