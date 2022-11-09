@@ -58,12 +58,25 @@ const Register = () => {
   };
   return (
     <>
-      <FormContainer>
-        <img src="s1.svg" alt="" width={500} />
-        <form onSubmit={(event) => handleSubmit(event)}>
+      <Container>
+        <div className="text">
+          <h1>Let's Get Started</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+            temporibus velit asperiores, blanditiis enim laboriosam doloremque!
+          </p>
+          <img src="s1.svg" alt="" width={500} />
+          <button className="mobile">
+            <a href="#form">Get Started</a>{" "}
+          </button>
+        </div>
+
+        <form id="form" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src="logo.png" alt="" />
-            <h1>GoChat</h1>
+            <h1>
+              GoChat<span>42</span>
+            </h1>
           </div>
           <input
             type="text"
@@ -94,12 +107,12 @@ const Register = () => {
             Already have an account ? <Link to={"/login"}>Login</Link>
           </span>
         </form>
-      </FormContainer>
+      </Container>
     </>
   );
 };
 
-const FormContainer = styled.div`
+const Container = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -108,6 +121,46 @@ const FormContainer = styled.div`
   gap: 1rem;
   align-items: center;
   background-color: #000000ce;
+
+  button {
+    background-color: #4d00c2;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: 0.5s ease-in-out;
+    &:hover {
+      border: 0.1rem solid #4d00c2;
+      background-color: transparent;
+      color: #4d00c2;
+    }
+  }
+
+  .text {
+    .mobile {
+      display: none;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+    h1 {
+      font-size: 50px;
+      width: 300px;
+      font-size: 72px;
+      background: -webkit-linear-gradient(#eee, #4d00c2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      width: 400px;
+      color: gray;
+    }
+  }
 
   .brand {
     display: flex;
@@ -120,6 +173,9 @@ const FormContainer = styled.div`
     h1 {
       color: white;
       text-transform: uppercase;
+      span {
+        color: #4d00c2;
+      }
     }
   }
   form {
@@ -127,7 +183,7 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
+    background-color: #000000ce;
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
@@ -143,23 +199,7 @@ const FormContainer = styled.div`
         outline: none;
       }
     }
-    button {
-      background-color: #4d00c2;
-      color: white;
-      padding: 1rem 2rem;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 0.4rem;
-      font-size: 1rem;
-      text-transform: uppercase;
-      transition: 0.5s ease-in-out;
-      &:hover {
-        border: 0.1rem solid #4d00c2;
-        background-color: transparent;
-        color: #4d00c2;
-      }
-    }
+
     span {
       color: gray;
       font-size: 15px;
@@ -169,6 +209,48 @@ const FormContainer = styled.div`
         text-decoration: none;
         font-weight: bold;
         cursor: pointer;
+      }
+    }
+  }
+  @media screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+
+    form {
+      border-radius: 0%;
+      height: 180vh;
+      margin-top: -15px;
+      background-color: #000000f2;
+    }
+    .text {
+      padding-top: 640px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 90px;
+      .mobile {
+        display: block;
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+      margin-top: 20%;
+      width: 90%;
+      h1 {
+        font-size: 55px;
+        width: 90%;
+      }
+      p {
+        text-align: center;
+        font-size: 20px;
+        width: 100%;
+        color: white;
+      }
+      img {
+        width: 90%;
       }
     }
   }

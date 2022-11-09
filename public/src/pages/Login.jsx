@@ -58,7 +58,9 @@ const Login = () => {
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src="logo.png" alt="" />
-            <h1>GoChat</h1>
+            <h1>
+              GoChat<span>42</span>
+            </h1>
           </div>
           <input
             type="text"
@@ -79,7 +81,14 @@ const Login = () => {
             Dont have an account ? <Link to={"/register"}>Signup</Link>
           </span>
         </form>
-        <img src="s2.svg" alt="" width={500} />
+        <div className="text">
+          <h1>Welcome Friend"</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+            temporibus velit asperiores, blanditiis enim laboriosam doloremque!
+          </p>
+          <img src="s2.svg" alt="" width={500} />
+        </div>
       </FormContainer>
     </>
   );
@@ -94,6 +103,21 @@ const FormContainer = styled.div`
   gap: 1rem;
   align-items: center;
   background-color: #000000ce;
+  .text {
+    h1 {
+      font-size: 50px;
+      width: 300px;
+      font-size: 72px;
+      font-weight: bold;
+      background: -webkit-linear-gradient(#eee, #4d00c2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      width: 400px;
+      color: gray;
+    }
+  }
 
   .brand {
     display: flex;
@@ -106,6 +130,10 @@ const FormContainer = styled.div`
     h1 {
       color: white;
       text-transform: uppercase;
+      span {
+        font-size: 15px;
+        color: #4d00c2;
+      }
     }
   }
   form {
@@ -113,7 +141,7 @@ const FormContainer = styled.div`
     flex-direction: column;
     gap: 2rem;
     border: none;
-
+    background-color: #000000ce;
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
@@ -156,6 +184,26 @@ const FormContainer = styled.div`
         text-decoration: none;
         font-weight: bold;
         cursor: pointer;
+      }
+    }
+  }
+  @media screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column-reverse;
+    form {
+    }
+    .text {
+      margin-top: 20%;
+      width: 90%;
+      h1 {
+        font-size: 40px;
+        width: 100%;
+      }
+      p {
+        display: none;
+      }
+      img {
+        width: 50%;
       }
     }
   }
