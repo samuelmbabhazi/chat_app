@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { loginRouter } from "../utils/ApiRoute";
 
@@ -32,23 +31,6 @@ const Login = () => {
     }
   };
 
-  // const handleValidation = (event) => {
-  //   const { confirmpassword, password, username, email } = values;
-  //   if (confirmpassword !== password) {
-  //     toast.error("password and confirm password must be same", toastOption);
-  //     return false;
-  //   } else if (username.length < 3) {
-  //     toast.error("username should be greater than 3 character", toastOption);
-  //     return false;
-  //   } else if (password.length < 8) {
-  //     toast.error("username should be greater than 8 character", toastOption);
-  //     return false;
-  //   } else if (email === "") {
-  //     toast.error("email is required", toastOption);
-  //     return false;
-  //   }
-  //   return true;
-  // };
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
