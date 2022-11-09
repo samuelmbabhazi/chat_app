@@ -20,14 +20,6 @@ const userSchema = new Schema({
     require: true,
     min: 8,
   },
-  isAvatarImgSet: {
-    type: Boolean,
-    default: false,
-  },
-  avatarImg: {
-    type: String,
-    default: "",
-  },
 });
 userSchema.plugin(uniqueValidator);
 
