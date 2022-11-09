@@ -198,45 +198,8 @@ const Container = styled.div`
     }
   }
   @media screen and (max-width: 900px) {
-    display: flex;
-    flex-direction: column;
-
-    form {
-      border-radius: 0%;
-      height: 180vh;
-      margin-top: -15px;
-      background-color: #000000f2;
-    }
     .text {
-      padding-top: 640px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 90px;
-      .mobile {
-        display: block;
-        a {
-          color: white;
-          text-decoration: none;
-        }
-      }
-      margin-top: 20%;
-      width: 90%;
-      h1 {
-        font-size: 55px;
-        width: 90%;
-      }
-      p {
-        text-align: center;
-        font-size: 20px;
-        width: 100%;
-        color: white;
-      }
-      img {
-        width: 90%;
-      }
+      display: none;
     }
   }
 `;

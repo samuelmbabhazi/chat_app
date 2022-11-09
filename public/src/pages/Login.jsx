@@ -171,23 +171,8 @@ const FormContainer = styled.div`
     }
   }
   @media screen and (max-width: 900px) {
-    display: flex;
-    flex-direction: column-reverse;
-    form {
-    }
     .text {
-      margin-top: 20%;
-      width: 90%;
-      h1 {
-        font-size: 40px;
-        width: 100%;
-      }
-      p {
-        display: none;
-      }
-      img {
-        width: 50%;
-      }
+      display: none;
     }
   }
 `;
