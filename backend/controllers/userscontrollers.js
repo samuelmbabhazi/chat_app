@@ -1,6 +1,9 @@
 const User = require("../model/usermodel");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+var currentUser;
 
 //controller signup
 module.exports.signup = async (req, res, next) => {
@@ -28,11 +31,7 @@ module.exports.signup = async (req, res, next) => {
     res.json({
       status: true,
       userId: user._id,
-      token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
-        expiresIn: "24h",
-      }),
     });
-    console.log(token);
   } catch (err) {
     next(err);
   }
@@ -57,8 +56,10 @@ module.exports.login = async (req, res, next) => {
         status: false,
       });
     }
+
     delete user.password;
-    res.json({ status: true, user });
+
+    res.status(200).json({ user });
   } catch (err) {
     next(err);
   }
