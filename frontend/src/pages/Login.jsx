@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import axios from "axios";
-import { loginRouter } from "../utils/ApiRoute";
+import { loginRouter } from "../utils/Api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,11 +17,7 @@ const Login = () => {
 
     console.log("is in validation", loginRouter);
     const { password, username } = values;
-    console.log(values);
-    const { data } = await axios.post(loginRouter, {
-      username,
-      password,
-    });
+    const { data } = await axios.post(loginRouter, values);
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { usersRouter } from "../utils/ApiRoute";
+import { usersRouter } from "../utils/Api";
 import { useNavigate } from "react-router-dom";
 
 const Chat = () => {
@@ -17,9 +17,9 @@ const Chat = () => {
         // handle error
         console.log(error);
       });
-  });
+  }, []);
 
-  // console.log("waaaa", users);
+  console.log("waaaa", users);
 
   return (
     <Container>

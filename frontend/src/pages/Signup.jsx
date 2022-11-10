@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import axios from "axios";
-import { registerRouter } from "../utils/ApiRoute";
+import { registerRouter } from "../utils/Api";
 
 const Register = () => {
   const navigate = useNavigate();
