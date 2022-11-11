@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { usersRouter } from "../utils/Api";
-import { useNavigate } from "react-router-dom";
 
 const Chat = () => {
   const [users, setUsers] = useState([]);
@@ -38,20 +37,20 @@ const Chat = () => {
             </div>
 
             <div class="h-10 w-10 rounded-full border-[#4d00c2] overflow-hidden">
-              <img
-                src="https://api.lorem.space/image/face?w=150&h=150"
-                alt="Avatar"
-                class="h-full w-full"
-              />
+              <img src="A.svg" alt="Avatar" class="h-full w-full" />
             </div>
             <div class="text-sm font-semibold mt-2 text-white">samy</div>
             <div class="text-xs text-gray-500 text-gray">Developper</div>
 
             <div class="flex flex-col mt-8">
               <div class="flex flex-row items-center justify-between text-xs">
-                <span class="font-bold">Conversations</span>
-                <span class="flex items-center justify-center bg-[blue] h-4 w-4 rounded-full">
-                  4
+                <span class="font-bold">
+                  <button class="bg-[blue] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Conversations
+                  </button>{" "}
+                  <button class="bg-[blue] hover:bg-blue-700 text-white font-bold py-2 px-4 mx-3 rounded">
+                    All users
+                  </button>{" "}
                 </span>
               </div>
               <div
@@ -103,7 +102,7 @@ const Chat = () => {
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                           <img
-                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            src="A.svg"
                             alt="Avatar"
                             class="h-full w-full rounded-full"
                           />
@@ -117,7 +116,7 @@ const Chat = () => {
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                           <img
-                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            src="A.svg"
                             alt="Avatar"
                             class="h-full w-full rounded-full"
                           />
@@ -135,7 +134,7 @@ const Chat = () => {
                       <div class="flex items-center justify-start flex-row-reverse">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                           <img
-                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            src="A1.svg"
                             alt="Avatar"
                             class="h-full w-full rounded-full"
                           />
@@ -149,7 +148,7 @@ const Chat = () => {
                       <div class="flex items-center justify-start flex-row-reverse">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                           <img
-                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            src="A1.svg"
                             alt="Avatar"
                             class="h-full w-full rounded-full"
                           />
@@ -166,7 +165,7 @@ const Chat = () => {
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                           <img
-                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            src="A.svg"
                             alt="Avatar"
                             class="h-full w-full rounded-full"
                           />
@@ -180,7 +179,7 @@ const Chat = () => {
                       <div class="flex items-center justify-start flex-row-reverse">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                           <img
-                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            src="A1.svg"
                             alt="Avatar"
                             class="h-full w-full rounded-full"
                           />
@@ -200,7 +199,7 @@ const Chat = () => {
                       <div class="flex flex-row items-center">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                           <img
-                            src="https://api.lorem.space/image/face?w=150&h=150"
+                            src="A.svg"
                             alt="Avatar"
                             class="h-full w-full rounded-full"
                           />

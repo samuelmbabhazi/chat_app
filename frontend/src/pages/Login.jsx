@@ -17,11 +17,14 @@ const Login = () => {
 
     console.log("is in validation", loginRouter);
     const { password, username } = values;
-    const { data } = await axios.post(loginRouter, values);
+    const { data } = await axios.post(loginRouter, {
+      password,
+      username,
+    });
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
-    }
-    if (data.status === true) {
+    } else {
+      console.log("bien connecter");
       localStorage.setItem("chat-app-user", JSON.stringify(data.user));
       navigate("/");
     }

@@ -45,21 +45,20 @@ module.exports.login = async (req, res, next) => {
 
     if (!user) {
       return res.json({
-        message: "Incorrect username or password",
+        message: "Incorrect username or password1",
         status: false,
       });
     }
     const isPasswordValide = await bcrypt.compare(password, user.password);
     if (!isPasswordValide) {
       return res.json({
-        message: "Incorrect username or password",
+        message: "Incorrect username or password2",
         status: false,
       });
     }
 
     delete user.password;
-
-    res.status(200).json({ user });
+    return res.json({ statut: true, user });
   } catch (err) {
     next(err);
   }
