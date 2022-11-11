@@ -5,9 +5,23 @@ import { usersRouter } from "../utils/Api";
 import Message from "../components/Message";
 import Input from "../components/Input";
 import Users from "../components/Users";
+import { Navigate, useNavigate } from "react-router-dom";
+import Deconnect from "../components/Deconnect";
 
 const Chat = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [currentuser, setCurrentuser] = useState(undefined);
+  useEffect(() => {
+    const confUser = async () => {
+      if (!localStorage.getItem("chat-app-user")) {
+        navigate("/login");
+      } else {
+        setCurrentuser(await JSON.parse(localStorage.getItem("chat-app-user")));
+      }
+    };
+    confUser();
+  }, []);
   useEffect(() => {
     axios
       .get(usersRouter)
@@ -20,9 +34,7 @@ const Chat = () => {
         console.log(error);
       });
   }, []);
-
-  console.log("waaaa", users);
-
+  console.log(currentuser);
   return (
     <Container>
       <div class="flex h-screen antialiased text-gray-800">
@@ -39,11 +51,11 @@ const Chat = () => {
               </div>
             </div>
 
-            <div class="h-10 w-10 rounded-full border-[#4d00c2] bg-white  overflow-hidden">
-              <img src="A.svg" alt="Avatar" class="h-full w-full" />
+            <div class="h-10 w-10 rounded-full border-[#4d00c2] bg-white  ">
+              <img src="A1.svg" alt="Avatar" class="h-full w-full" />
             </div>
             <div class="text-sm font-semibold mt-2 text-white">
-              <a href="/profil"> samy</a>{" "}
+              <a href="/profil">samy</a>
             </div>
             <div class="text-xs text-gray-500 text-gray">Developper</div>
 
@@ -60,6 +72,7 @@ const Chat = () => {
               </div>
               <Users users={users} />
             </div>
+            <Deconnect />
           </div>
           <Message />
         </div>

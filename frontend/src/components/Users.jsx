@@ -4,7 +4,7 @@ const Users = ({ users }) => {
   return (
     <div
       id="contact"
-      class="flex flex-col space-y-1 mt-4 -mx-2 h-[100%] overflow-y-auto "
+      class="flex flex-col space-y-1 mt-4 -mx-2 h-60 overflow-y-auto "
     >
       {users &&
         users.map((name, index) => {

@@ -27,8 +27,7 @@ const Register = () => {
     });
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
-    }
-    if (data.status === true) {
+    } else {
       console.log("bien enregistre");
       localStorage.setItem("chat-app-user", JSON.stringify(data.user));
       navigate("/login");
