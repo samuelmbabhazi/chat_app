@@ -15,10 +15,10 @@ const Chat = () => {
 
   useEffect(() => {
     const confUser = async () => {
-      if (!localStorage.getItem("chat-app-user")) {
+      if (!localStorage.getItem("user")) {
         navigate("/login");
       } else {
-        setCurrentuser(await JSON.parse(localStorage.getItem("chat-app-user")));
+        setCurrentuser(await JSON.parse(localStorage.getItem("user")));
       }
     };
     confUser();
@@ -61,7 +61,7 @@ const Chat = () => {
               <img src="A1.svg" alt="Avatar" class="h-full w-full" />
             </div>
             <div class="text-sm font-semibold mt-2 text-white">
-              <a href="/profil">samy</a>
+              <a href="/profil">{currentuser}</a>
             </div>
             <div class="text-xs text-gray-500 text-gray">Developper</div>
 

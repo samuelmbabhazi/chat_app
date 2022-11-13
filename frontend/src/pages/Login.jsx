@@ -27,7 +27,7 @@ const Login = () => {
       console.log(data.token);
       localStorage.setItem("token", JSON.stringify(data.token));
       console.log("bien connecter");
-      localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+      localStorage.setItem("user", JSON.stringify(data.user));
       navigate("/");
     }
   };

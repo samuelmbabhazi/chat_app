@@ -57,6 +57,7 @@ module.exports.login = async (req, res, next) => {
 
     delete user.password;
     return res.json({
+      user: user.username,
       userId: user._id,
       token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
         expiresIn: "24h",
