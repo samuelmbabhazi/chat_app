@@ -3,8 +3,6 @@ const User = require("../model/usermodel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-var currentUser;
-
 //controller signup
 module.exports.signup = async (req, res, next) => {
   try {
@@ -58,7 +56,12 @@ module.exports.login = async (req, res, next) => {
     }
 
     delete user.password;
-    return res.json({ statut: true, user });
+    return res.json({
+      userId: user._id,
+      token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+        expiresIn: "24h",
+      }),
+    });
   } catch (err) {
     next(err);
   }

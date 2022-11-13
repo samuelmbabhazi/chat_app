@@ -12,6 +12,7 @@ const Chat = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [currentuser, setCurrentuser] = useState(undefined);
+
   useEffect(() => {
     const confUser = async () => {
       if (!localStorage.getItem("chat-app-user")) {
@@ -23,8 +24,13 @@ const Chat = () => {
     confUser();
   }, []);
   useEffect(() => {
-    axios
-      .get(usersRouter)
+    const token = JSON.parse(localStorage.getItem("token"));
+    axios(usersRouter, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
       .then(function (response) {
         // handle success
         setUsers(response.data.allUsers);

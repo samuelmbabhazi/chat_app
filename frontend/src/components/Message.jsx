@@ -32,7 +32,7 @@ const Message = () => {
                         class="h-full w-full rounded-full"
                       />
                     </div>
-                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                    <div class="relative ml-3 text-sm bg-[#d4d5e8] py-2 px-4 shadow rounded-xl">
                       <div>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Vel ipsa commodi illum saepe numquam maxime

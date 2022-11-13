@@ -24,6 +24,8 @@ const Login = () => {
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
     } else {
+      console.log(data.token);
+      localStorage.setItem("token", JSON.stringify(data.token));
       console.log("bien connecter");
       localStorage.setItem("chat-app-user", JSON.stringify(data.user));
       navigate("/");
