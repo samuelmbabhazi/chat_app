@@ -1,13 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 const Profil = () => {
+  const [currentuser, setCurrentuser] = useState(undefined);
+  useEffect(() => {
+    const confUser = async () => {
+      if (localStorage.getItem("user")) {
+        setCurrentuser(await JSON.parse(localStorage.getItem("user")));
+      }
+    };
+    confUser();
+  }, []);
   return (
     <Container>
       <div class="h-60 w-60 rounded-full border-[#4d00c2] bg-white  overflow-hidden">
         <img src="A.svg" alt="Avatar" class="h-full w-full" />
       </div>
-      <div class="text-xl font-semibold mt-3 text-white">samy</div>
+      <div class="text-xl font-semibold mt-3 text-white">{currentuser}</div>
       <div class="text-xs text-gray-500 text-gray">Developper</div>
       <button class="bg-[blue] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
         Change Profil

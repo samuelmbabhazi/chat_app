@@ -1,6 +1,6 @@
 import React from "react";
 
-const Users = ({ users }) => {
+const Users = ({ users, changechat }) => {
   return (
     <div
       id="contact"
@@ -9,14 +9,17 @@ const Users = ({ users }) => {
       {users &&
         users.map((name, index) => {
           return (
-            <button class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2">
+            <button
+              onClick={() => changechat()}
+              class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2"
+            >
               <div class="flex items-center justify-center h-8 w-8 bg-[blue] rounded-full">
                 {name.username[0].toUpperCase()}
               </div>
               <div class="ml-2 text-sm font-semibold">{name.username}</div>
-              <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
+              {/* <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
                 3
-              </div>
+              </div> */}
             </button>
           );
         })}

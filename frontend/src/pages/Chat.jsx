@@ -3,9 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { messageget, usersRouter } from "../utils/Api";
 import Message from "../components/Message";
-import Input from "../components/Input";
 import Users from "../components/Users";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Deconnect from "../components/Deconnect";
 
 const Chat = () => {

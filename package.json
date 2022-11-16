@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
-    "react-toastify": "^9.1.1"
+    "react-toastify": "^9.1.1",
+    "socket.io": "^4.5.3"
   }
 }
