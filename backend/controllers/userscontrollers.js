@@ -1,4 +1,5 @@
 const User = require("../model/usermodel");
+const Message = require("../model/messagemodel");
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -77,4 +78,22 @@ module.exports.getusers = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+module.exports.getmesssages = async (req, res, next) => {
+  const message = await Message.find();
+  try {
+    if (message) {
+      res.json({ status: true, message });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+module.exports.postmesssages = async (req, res, next) => {
+  var message = new Message(req.body);
+  message.save({
+    message: message,
+  });
+  res.json({ message: message });
 };
