@@ -8,10 +8,11 @@ body {
   max-width: 100vw;
   overflow: hidden;
   position: relative;
+  background-color: #e6e4e2;
 
-  background: url("../public/bg.jpeg"), #201f1f;
+  /* background: url("../public/bg.jpeg"), #201f1f; */
 
-  background-position: center;
+  /* background-position: center;
   background-repeat: repeat;
-  background-size: cover;
+  background-size: cover; */
 }

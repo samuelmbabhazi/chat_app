@@ -98,22 +98,33 @@ const Chat = () => {
     <Container>
       <div class="flex h-screen antialiased text-gray-800">
         <div class="flex flex-row h-full w-full overflow-x-hidden">
-          <div class="flex flex-col py-8 pl-6 pr-2 w-64 backdrop-filter backdrop-blur-sm bg-opacity-10 text-white bg-white flex-shrink-0">
+          <div class="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-[#e6e4e2] flex-shrink-0">
             <div class="flex flex-row items-center  h-12 w-full my-3">
               <div class=" font-bold text-2xl">
                 <div className="brand">
-                  <img src="logo.png" alt="" width={30} />
+                  {/* <img src="logo.png" alt="" width={30} /> */}
                   <h1 class="">
-                    GOCHAT<span class="text-[15px] text-[#4d00c2]">42</span>
+                    GOCHAT<sup class="text-[15px] ">42</sup>
                   </h1>
                 </div>
               </div>
             </div>
 
-            <div class="h-10 w-10 rounded-full border-[#4d00c2] bg-white  ">
-              <img src="A.svg" alt="Avatar" class="h-full w-full" />
+            <div class="overflow-hidden relative w-10 h-10  rounded-full  dark:bg-gray-600">
+              <svg
+                class="absolute -left-1 w-12 h-12 text-black"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
             </div>
-            <div class="text-sm font-semibold mt-2 text-white">
+            <div class="text-sm font-semibold mt-2 text-black">
               <a href="/profil">{currentuser}</a>
             </div>
             <div class="text-xs text-gray-500 text-gray">Developper</div>
@@ -121,10 +132,10 @@ const Chat = () => {
             <div class="flex flex-col mt-8">
               <div class="flex flex-row items-center justify-between text-xs">
                 <span class="font-bold">
-                  <button class="bg-[blue] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  <button class="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded">
                     Conversations
                   </button>{" "}
-                  <button class="bg-[blue] hover:bg-blue-700 text-white font-bold py-2 px-4 mx-3 rounded">
+                  <button class="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4 mx-3 rounded">
                     All users
                   </button>{" "}
                 </span>
@@ -134,11 +145,11 @@ const Chat = () => {
             <Deconnect />
           </div>
           <div class="flex flex-col flex-auto h-full p-6 ">
-            <div class="flex flex-col flex-auto flex-shrink-0  bg-[ #000000ce] h-full p-4">
+            <div class="flex flex-col flex-auto flex-shrink-0  bg-[#e6e4e2] rounded-xl h-full p-4 ">
               <button class="flex flex-row items-center   p-2">
                 <div class="overflow-hidden relative w-10 h-10  rounded-full  dark:bg-gray-600">
                   <svg
-                    class="absolute -left-1 w-12 h-12 text-gray-400"
+                    class="absolute -left-1 w-12 h-12 text-black"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -150,9 +161,9 @@ const Chat = () => {
                     ></path>
                   </svg>
                 </div>
-                <div class="font-medium text-gray-500  px-3">
+                <div class="font-medium text-black px-3 ">
                   <div>{toUser}</div>
-                  <div class="text-sm text-[blue] ">GoChat</div>
+                  <div class="text-sm text-gray-500   ">GoChat</div>
                 </div>
               </button>
               <div
@@ -165,7 +176,7 @@ const Chat = () => {
                   currentId={currentId}
                 />
               </div>
-              <div class="flex flex-row items-center h-16 rounded-xl bg-[#000000ce] w-full px-4">
+              <div class="flex flex-row items-center h-16 rounded-xl bg-black w-full px-4">
                 <div>
                   <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
                     <svg
@@ -214,12 +225,11 @@ const Chat = () => {
                   <button
                     type="submit"
                     onClick={(event) => handleSubmit(event)}
-                    class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                    class="flex items-center justify-center bg-black hover:border hover:bg-white  rounded-xl text-white px-4 py-1 flex-shrink-0"
                   >
-                    <span>Send</span>
                     <span class="ml-2">
                       <svg
-                        class="w-4 h-4 transform rotate-45 -mt-px"
+                        class="w-8 h-8 transform rotate-45 -mt-px hover:text-black"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -246,12 +256,13 @@ const Chat = () => {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: #000000e6;
+  background-color: black;
   #contact {
+    margin-right: 5px;
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
-        background-color: blue;
+        background-color: black;
       }
     }
   }

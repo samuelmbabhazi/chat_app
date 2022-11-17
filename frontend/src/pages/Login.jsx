@@ -48,7 +48,7 @@ const Login = () => {
           <div className="brand">
             {/* <img src="logo.png" alt="" width={70} /> */}
             <h1>
-              GoChat<span>42</span>
+              GoChat<sup>42</sup>
             </h1>
           </div>
           <label for="inp" class="inp">
@@ -79,14 +79,14 @@ const Login = () => {
             Dont have an account ? <Link to={"/signup"}>Signup</Link>
           </span>
         </form>
-        <div className="text">
+        {/* <div className="text">
           <h1>Welcome Friend"</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
             temporibus velit asperiores, blanditiis enim laboriosam doloremque!
           </p>
           <img src="s2.svg" alt="" width={500} />
-        </div>
+        </div> */}
       </FormContainer>
     </>
   );
@@ -98,11 +98,13 @@ const FormContainer = styled.div`
   display: flex;
   /* flex-direction: column; */
   justify-content: center;
+  color: black;
   gap: 1rem;
   align-items: center;
-  background-color: #000000ce;
+  /* background-color: #000000ce;
   .text {
     h1 {
+      color: black;
       font-size: 45px;
       width: 330px;
       font-size: 72px;
@@ -115,7 +117,7 @@ const FormContainer = styled.div`
       width: 400px;
       color: gray;
     }
-  }
+  } */
 
   .brand {
     display: flex;
@@ -126,13 +128,13 @@ const FormContainer = styled.div`
       height: 5rem;
     }
     h1 {
-      color: white;
       text-transform: uppercase;
       font-size: 30px;
       font-weight: bold;
       span {
         font-size: 15px;
-        color: #4d00c2;
+        /* color: #4d00c2; */
+        color: black;
       }
     }
   }
@@ -143,10 +145,11 @@ const FormContainer = styled.div`
     border: none;
     border-radius: 1rem;
     padding: 3rem 5rem;
+
     input {
       &:focus {
         padding-top: 1.2rem;
-        border: 0.1rem solid #4d00c2;
+        border: 0.1rem solid black;
         outline: none;
       }
     }
@@ -184,7 +187,7 @@ const FormContainer = styled.div`
     input {
       background-color: transparent;
       padding: 1rem;
-      border: 0.1rem solid white;
+      border-bottom: 0.1rem solid black;
       border-radius: 0.4rem;
       color: gray;
       width: 100%;
@@ -211,7 +214,8 @@ const FormContainer = styled.div`
     }
 
     button {
-      background-color: #4d00c2;
+      /* background-color: #4d00c2; */
+      background-color: black;
       color: white;
       padding: 1rem 2rem;
       border: none;
@@ -222,9 +226,9 @@ const FormContainer = styled.div`
       text-transform: uppercase;
       transition: 0.5s ease-in-out;
       &:hover {
-        border: 0.1rem solid #4d00c2;
+        border: 0.1rem solid black;
         background-color: transparent;
-        color: #4d00c2;
+        color: black;
       }
     }
     span {
@@ -232,7 +236,7 @@ const FormContainer = styled.div`
       font-size: 15;
 
       a {
-        color: #4d00c2;
+        color: black;
         text-decoration: none;
         font-weight: bold;
         cursor: pointer;

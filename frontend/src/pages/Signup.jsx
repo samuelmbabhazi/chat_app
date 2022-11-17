@@ -40,23 +40,23 @@ const Register = () => {
   return (
     <>
       <Container>
-        <div className="text">
+        <div id="text" className="text">
           <h1>Let's Get Started</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
             temporibus velit asperiores, blanditiis enim laboriosam doloremque!
           </p>
-          <img src="s1.svg" alt="" width={500} />
-          <button className="mobile">
+          <img src="s2.svg" alt="" width={500} />
+          {/* <button className="mobile">
             <a href="#form">Get Started</a>{" "}
-          </button>
+          </button> */}
         </div>
 
         <form id="form" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            {/* <img src="logo.png" alt="" width={70} /> */}
+            {/* <img src="log.png" alt="" width={70} /> */}
             <h1>
-              GoChat<span>42</span>
+              GoChat<sup>42</sup>
             </h1>
           </div>
           <label for="inp" class="inp">
@@ -118,10 +118,11 @@ const Container = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #000000ce;
+  color: black;
+  /* background-color: #000000ce; */
 
   button {
-    background-color: #4d00c2;
+    background-color: black;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -132,7 +133,7 @@ const Container = styled.div`
     text-transform: uppercase;
     transition: 0.5s ease-in-out;
     &:hover {
-      border: 0.1rem solid #4d00c2;
+      border: 0.1rem solid black;
       background-color: transparent;
       color: #4d00c2;
     }
@@ -151,7 +152,7 @@ const Container = styled.div`
       font-weight: bold;
       width: 350px;
       font-size: 72px;
-      background: -webkit-linear-gradient(#eee, #4d00c2);
+      background: -webkit-linear-gradient(gray, black);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -172,7 +173,7 @@ const Container = styled.div`
     h1 {
       font-weight: bold;
       font-size: 30px;
-      color: white;
+
       text-transform: uppercase;
       span {
         color: #4d00c2;
@@ -189,7 +190,7 @@ const Container = styled.div`
     input {
       &:focus {
         padding-top: 1.2rem;
-        border: 0.1rem solid #4d00c2;
+        border: 0.1rem solid black;
         outline: none;
       }
     }
@@ -227,7 +228,7 @@ const Container = styled.div`
     input {
       background-color: transparent;
       padding: 1rem;
-      border: 0.1rem solid white;
+      border-bottom: 0.1rem solid black;
       border-radius: 0.4rem;
       color: gray;
       width: 100%;
@@ -255,12 +256,16 @@ const Container = styled.div`
     span {
       color: gray;
       font-size: 15;
-    }
-
-    @media screen and (max-width: 900px) {
-      .text {
-        display: none;
+      a {
+        font-weight: bold;
+        color: black;
       }
+    }
+  }
+
+  @media screen and(min-width: 900px) {
+    .text {
+      display: none;
     }
   }
 `;
