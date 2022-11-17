@@ -135,7 +135,7 @@ const Container = styled.div`
     &:hover {
       border: 0.1rem solid black;
       background-color: transparent;
-      color: #4d00c2;
+      color: black;
     }
   }
 
