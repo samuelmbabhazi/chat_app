@@ -59,30 +59,47 @@ const Register = () => {
               GoChat<span>42</span>
             </h1>
           </div>
-          <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="confirmpassword"
-            onChange={(e) => handleChange(e)}
-          />
+          <label for="inp" class="inp">
+            <input
+              type="text"
+              name="username"
+              onChange={(e) => handleChange(e)}
+              placeholder="&nbsp;"
+            />
+            <span class="label">Username</span>
+            <span class="focus-bg"></span>
+          </label>
+          <label for="inp" class="inp">
+            <input
+              type="email"
+              name="email"
+              onChange={(e) => handleChange(e)}
+              placeholder="&nbsp;"
+            />
+            <span class="label">Email</span>
+            <span class="focus-bg"></span>
+          </label>
+          <label for="inp" class="inp">
+            <input
+              type="password"
+              name="password"
+              onChange={(e) => handleChange(e)}
+              placeholder="&nbsp;"
+            />
+            <span class="label">Password</span>
+            <span class="focus-bg"></span>
+          </label>
+          <label for="inp" class="inp">
+            <input
+              type="password"
+              name="confirmpassword"
+              onChange={(e) => handleChange(e)}
+              placeholder="&nbsp;"
+            />
+            <span class="label">Confirmpassword</span>
+            <span class="focus-bg"></span>
+          </label>
+
           <button type="submit">signup</button>
           <span>
             Already have an account ? <Link to={"/login"}>Login</Link>
@@ -163,13 +180,50 @@ const Container = styled.div`
     }
   }
   form {
-    height: 98vh;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
+    border: none;
     border-radius: 1rem;
     padding: 3rem 5rem;
+    input {
+      &:focus {
+        padding-top: 1.2rem;
+        border: 0.1rem solid #4d00c2;
+        outline: none;
+      }
+    }
+    .inp {
+      position: relative;
+      margin: auto;
+      width: 100%;
+      max-width: 280px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .label {
+      position: absolute;
+      top: 20px;
+      left: 12px;
+      color: gray;
+      font-size: 12px;
+      transform-origin: 0 0;
+      transform: translate3d(0, 0, 0);
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+    .focus-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
     input {
       background-color: transparent;
       padding: 1rem;
@@ -178,27 +232,35 @@ const Container = styled.div`
       color: gray;
       width: 100%;
       font-size: 0.7rem;
-      &:focus {
-        border: 0.1rem solid #4d00c2;
-        outline: none;
-      }
+      transition: all 0.15s ease;
     }
 
-    span {
+    input:not(:placeholder-shown) + .label {
       color: gray;
-      font-size: 15px;
-      text-transform: uppercase;
-      a {
-        color: #4d00c2;
-        text-decoration: none;
-        font-weight: bold;
-        cursor: pointer;
+      transform: translate3d(0, -12px, 0) scale(0.75);
+    }
+
+    input:focus {
+      outline: none;
+      background-color: transparent;
+      + .label {
+        color: gray;
+        transform: translate3d(0, -12px, 0) scale(0.75);
+        + .focus-bg {
+          transform: scaleX(1);
+          transition: all 0.1s ease;
+        }
       }
     }
-  }
-  @media screen and (max-width: 900px) {
-    .text {
-      display: none;
+    span {
+      color: gray;
+      font-size: 15;
+    }
+
+    @media screen and (max-width: 900px) {
+      .text {
+        display: none;
+      }
     }
   }
 `;

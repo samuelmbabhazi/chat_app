@@ -1,6 +1,6 @@
 import React from "react";
 
-const Users = ({ users, changechat }) => {
+const Users = ({ users, changeChat, settoId }) => {
   return (
     <div
       id="contact"
@@ -10,7 +10,7 @@ const Users = ({ users, changechat }) => {
         users.map((name, index) => {
           return (
             <button
-              onClick={() => changechat()}
+              onClick={() => changeChat(name._id)}
               class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2"
             >
               <div class="flex items-center justify-center h-8 w-8 bg-[blue] rounded-full">

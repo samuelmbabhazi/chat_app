@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
-const Message = mongoose.model("Message", { message: String });
-module.exports = Message;
+const messageSchema = mongoose.Schema(
+  {
+    message: { type: String, required: true },
+
+    from: { type: String },
+
+    to: { type: String },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model("Messages", messageSchema);

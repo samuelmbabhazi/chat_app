@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,6 +10,11 @@ const Login = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
+  });
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/");
+    }
   });
 
   const handleSubmit = async (event) => {
@@ -28,6 +33,7 @@ const Login = () => {
       localStorage.setItem("token", JSON.stringify(data.token));
       console.log("bien connecter");
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("userId", JSON.stringify(data.userId));
       navigate("/");
     }
   };
@@ -45,19 +51,28 @@ const Login = () => {
               GoChat<span>42</span>
             </h1>
           </div>
-          <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            onChange={(e) => handleChange(e)}
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={(e) => handleChange(e)}
-          />
+          <label for="inp" class="inp">
+            <input
+              type="text"
+              name="username"
+              onChange={(e) => handleChange(e)}
+              id="inp"
+              placeholder="&nbsp;"
+            />
+            <span class="label">Username</span>
+            <span class="focus-bg"></span>
+          </label>
+          <label for="inp" class="inp">
+            <input
+              type="password"
+              name="password"
+              onChange={(e) => handleChange(e)}
+              id="inp"
+              placeholder="&nbsp;"
+            />
+            <span class="label">Password</span>
+            <span class="focus-bg"></span>
+          </label>
 
           <button type="submit">Login</button>
           <span>
@@ -129,6 +144,44 @@ const FormContainer = styled.div`
     border-radius: 1rem;
     padding: 3rem 5rem;
     input {
+      &:focus {
+        padding-top: 1.2rem;
+        border: 0.1rem solid #4d00c2;
+        outline: none;
+      }
+    }
+    .inp {
+      position: relative;
+      margin: auto;
+      width: 100%;
+      max-width: 280px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .label {
+      position: absolute;
+      top: 20px;
+      left: 12px;
+      color: gray;
+      font-size: 12px;
+      transform-origin: 0 0;
+      transform: translate3d(0, 0, 0);
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+    .focus-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    input {
       background-color: transparent;
       padding: 1rem;
       border: 0.1rem solid white;
@@ -136,11 +189,27 @@ const FormContainer = styled.div`
       color: gray;
       width: 100%;
       font-size: 0.7rem;
-      &:focus {
-        border: 0.1rem solid #4d00c2;
-        outline: none;
+      transition: all 0.15s ease;
+    }
+
+    input:not(:placeholder-shown) + .label {
+      color: gray;
+      transform: translate3d(0, -12px, 0) scale(0.75);
+    }
+
+    input:focus {
+      outline: none;
+      background-color: transparent;
+      + .label {
+        color: gray;
+        transform: translate3d(0, -12px, 0) scale(0.75);
+        + .focus-bg {
+          transform: scaleX(1);
+          transition: all 0.1s ease;
+        }
       }
     }
+
     button {
       background-color: #4d00c2;
       color: white;
@@ -161,7 +230,6 @@ const FormContainer = styled.div`
     span {
       color: gray;
       font-size: 15;
-      text-transform: uppercase;
 
       a {
         color: #4d00c2;
