@@ -10,7 +10,7 @@ const Users = ({ users, changeChat, settoId }) => {
         users.map((name, index) => {
           return (
             <button
-              onClick={() => changeChat(name._id)}
+              onClick={() => changeChat(name._id, name.username)}
               class="flex flex-row items-center hover:border-b-2 hover:border-[blue]  p-2"
             >
               <div class="flex items-center justify-center h-8 w-8 bg-[blue] rounded-full">

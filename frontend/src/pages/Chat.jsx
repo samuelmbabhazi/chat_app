@@ -10,10 +10,11 @@ import Deconnect from "../components/Deconnect";
 const Chat = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const [message, setmessage] = useState();
+  const [messages, setmessage] = useState();
   const [currentuser, setCurrentuser] = useState(undefined);
   const [currentId, setCurrentId] = useState(undefined);
   const [toId, settoId] = useState(undefined);
+  const [toUser, settoUser] = useState("Welcome");
   const [values, setValues] = useState({
     message: "",
   });
@@ -35,8 +36,9 @@ const Chat = () => {
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
-  const changeChat = (id) => {
+  const changeChat = (id, name) => {
     settoId(id);
+    settoUser(name);
   };
 
   useEffect(() => {
@@ -82,7 +84,16 @@ const Chat = () => {
         console.log(error);
       });
   }, []);
-  console.log(toId);
+  const myMessages = messages?.message.filter((elm) => {
+    if (
+      (elm.to === toId && elm.from === currentId) ||
+      (elm.to === currentId && elm.from === toId)
+    )
+      return true;
+    else return false;
+  });
+  // {$or:[{from: '636c070eaa2ce6a0b07afc9f'}, {to:'636c070eaa2ce6a0b07afc9f'}]}
+  console.log(myMessages);
   return (
     <Container>
       <div class="flex h-screen antialiased text-gray-800">
@@ -140,15 +151,19 @@ const Chat = () => {
                   </svg>
                 </div>
                 <div class="font-medium text-gray-500  px-3">
-                  <div>Samuel</div>
-                  <div class="text-sm text-[blue] ">Online</div>
+                  <div>{toUser}</div>
+                  <div class="text-sm text-[blue] ">GoChat</div>
                 </div>
               </button>
               <div
                 id="contact"
                 class="flex flex-col h-full overflow-x-auto mb-4"
               >
-                <Message message={message} />
+                <Message
+                  messages={myMessages}
+                  toId={toId}
+                  currentId={currentId}
+                />
               </div>
               <div class="flex flex-row items-center h-16 rounded-xl bg-[#000000ce] w-full px-4">
                 <div>
