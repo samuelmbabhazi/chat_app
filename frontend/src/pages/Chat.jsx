@@ -15,27 +15,27 @@ const Chat = () => {
   const [currentId, setCurrentId] = useState(undefined);
   const [toId, settoId] = useState(undefined);
   const [toUser, settoUser] = useState("Welcome");
-  const [values, setValues] = useState({
-    message: "",
-  });
+
+  const [input, setInput] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { message } = values;
     const { data } = await axios.post(messageget, {
-      message: message,
+      message: input,
       from: currentId,
       to: toId,
     });
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
     } else {
+      setInput("");
     }
   };
   const handleChange = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+    setInput(event.target.value);
   };
+
   const changeChat = (id, name) => {
     settoId(id);
     settoUser(name);
@@ -101,8 +101,8 @@ const Chat = () => {
           <div class="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-[#e6e4e2] flex-shrink-0">
             <div class="flex flex-row items-center  h-12 w-full my-3">
               <div class=" font-bold text-2xl">
-                <div className="brand">
-                  {/* <img src="logo.png" alt="" width={30} /> */}
+                <div className="brand flex">
+                  <img src="lo.png" alt="" width={40} />
                   <h1 class="">
                     GOCHAT<sup class="text-[15px] ">42</sup>
                   </h1>
@@ -145,7 +145,7 @@ const Chat = () => {
             <Deconnect />
           </div>
           <div class="flex flex-col flex-auto h-full p-6 ">
-            <div class="flex flex-col flex-auto flex-shrink-0  bg-[#e6e4e2] rounded-xl h-full p-4 ">
+            <div class="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
               <button class="flex flex-row items-center   p-2">
                 <div class="overflow-hidden relative w-10 h-10  rounded-full  dark:bg-gray-600">
                   <svg
@@ -168,15 +168,16 @@ const Chat = () => {
               </button>
               <div
                 id="contact"
-                class="flex flex-col h-full overflow-x-auto mb-4"
+                class="flex flex-col h-full px-14 overflow-x-auto mb-4"
               >
                 <Message
                   messages={myMessages}
                   toId={toId}
                   currentId={currentId}
+                  toUser={toUser}
                 />
               </div>
-              <div class="flex flex-row items-center h-16 rounded-xl bg-black w-full px-4">
+              <div class="flex flex-row items-center h-16  bg-black w-full px-4">
                 <div>
                   <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
                     <svg
@@ -200,6 +201,7 @@ const Chat = () => {
                     <input
                       name="message"
                       type="text"
+                      value={input}
                       class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                       onChange={(e) => handleChange(e)}
                     />

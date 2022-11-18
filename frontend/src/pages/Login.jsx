@@ -46,7 +46,7 @@ const Login = () => {
       <FormContainer>
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            {/* <img src="logo.png" alt="" width={70} /> */}
+            <img src="lo.png" alt="" width={70} />
             <h1>
               GoChat<sup>42</sup>
             </h1>
@@ -205,7 +205,7 @@ const FormContainer = styled.div`
       background-color: transparent;
       + .label {
         color: gray;
-        transform: translate3d(0, -12px, 0) scale(0.75);
+        transform: translate3d(0, -10px, 0) scale(0.75);
         + .focus-bg {
           transform: scaleX(1);
           transition: all 0.1s ease;

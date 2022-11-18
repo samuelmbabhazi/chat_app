@@ -54,7 +54,7 @@ const Register = () => {
 
         <form id="form" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            {/* <img src="log.png" alt="" width={70} /> */}
+            <img src="lo.png" alt="" width={70} />
             <h1>
               GoChat<sup>42</sup>
             </h1>
