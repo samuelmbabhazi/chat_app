@@ -106,7 +106,7 @@ const Chat = () => {
       <Container>
         <div class="flex h-screen antialiased text-gray-800">
           <div class="flex flex-row h-full w-full overflow-x-hidden">
-            <div class="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-[#e6e4e2] flex-shrink-0">
+            <div class="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
               <div class="flex flex-row items-center  h-12 w-full my-3">
                 <div class=" font-bold text-2xl">
                   <div className="brand flex">
@@ -159,7 +159,7 @@ const Chat = () => {
             <div class="flex flex-col flex-auto h-full p-6 ">
               <div class="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
                 <button class="flex flex-row items-center   p-2">
-                  <div class="overflow-hidden relative w-10 h-10  rounded-full  dark:bg-gray-600">
+                  <div class="overflow-hidden relative w-10 h-10 bg-opacity-25 backdrop-filter backdrop-blur-lg  rounded-full  dark:bg-gray-600">
                     <svg
                       class="absolute -left-1 w-12 h-12 text-black"
                       fill="currentColor"
@@ -189,11 +189,11 @@ const Chat = () => {
                     toUser={toUser}
                   />
                 </div>
-                <div class="flex flex-row items-center h-16  bg-black w-full px-4">
+                <div class="flex flex-row items-center h-16 bg-opacity-25 backdrop-filter backdrop-blur-lg bg-black w-full px-4">
                   <div>
                     <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
                       <svg
-                        class="w-5 h-5"
+                        class="w-5 h-5 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -239,7 +239,7 @@ const Chat = () => {
                     <button
                       type="submit"
                       onClick={(event) => handleSubmit(event)}
-                      class="flex items-center justify-center bg-black hover:border hover:bg-white  rounded-xl text-white px-4 py-1 flex-shrink-0"
+                      class="flex items-center justify-center     rounded-xl text-white px-4 py-1 flex-shrink-0"
                     >
                       <span class="ml-2">
                         <svg
@@ -271,7 +271,7 @@ const Chat = () => {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: black;
+
   #contact {
     margin-right: 5px;
     &::-webkit-scrollbar {
