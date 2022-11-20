@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Users from "../components/Users";
 import { useNavigate } from "react-router-dom";
 import Deconnect from "../components/Deconnect";
+import Welcome from "../components/Welcome";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -182,12 +183,16 @@ const Chat = () => {
                   id="contact"
                   class="flex flex-col h-full px-14 overflow-x-auto mb-4"
                 >
-                  <Message
-                    messages={myMessages}
-                    toId={toId}
-                    currentId={currentId}
-                    toUser={toUser}
-                  />
+                  {toId === undefined ? (
+                    <Welcome />
+                  ) : (
+                    <Message
+                      messages={myMessages}
+                      toId={toId}
+                      currentId={currentId}
+                      toUser={toUser}
+                    />
+                  )}
                 </div>
                 <div class="flex flex-row items-center h-16 bg-opacity-25 backdrop-filter backdrop-blur-lg bg-black w-full px-4">
                   <div>
