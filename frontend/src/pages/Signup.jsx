@@ -42,14 +42,8 @@ const Register = () => {
       <Container>
         <div id="text" className="text">
           <h1>Let's Get Started</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-            temporibus velit asperiores, blanditiis enim laboriosam doloremque!
-          </p>
+          <p></p>
           <img src="s2.svg" alt="" width={500} />
-          {/* <button className="mobile">
-            <a href="#form">Get Started</a>{" "}
-          </button> */}
         </div>
 
         <form id="form" onSubmit={(event) => handleSubmit(event)}>
@@ -111,8 +105,12 @@ const Register = () => {
 };
 
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 90vh;
+  width: 80vw;
   display: flex;
   /* flex-direction: column; */
   justify-content: center;
@@ -140,6 +138,11 @@ const Container = styled.div`
   }
 
   .text {
+    padding: 27px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .mobile {
       display: none;
       a {
@@ -148,13 +151,12 @@ const Container = styled.div`
       }
     }
     h1 {
-      font-size: 50px;
+      font-size: 70px;
       font-weight: bold;
       width: 350px;
-      font-size: 72px;
-      background: -webkit-linear-gradient(gray, black);
+      /* background: -webkit-linear-gradient(gray, white);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-text-fill-color: transparent; */
     }
     p {
       width: 400px;
@@ -167,6 +169,7 @@ const Container = styled.div`
     align-items: center;
     gap: 1rem;
     justify-content: center;
+
     img {
       height: 5rem;
     }
@@ -185,7 +188,7 @@ const Container = styled.div`
     flex-direction: column;
     gap: 2rem;
     border: none;
-    border-radius: 1rem;
+
     padding: 3rem 5rem;
     input {
       &:focus {

@@ -30,7 +30,7 @@ const Profil = () => {
       </div>
       <div class="text-xl font-semibold mt-3 text-black">{currentuser}</div>
       <div class="text-xs text-gray-500 text-gray">Developper</div>
-      <button class="bg-black hover:bg-white w-[100] hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4 mx-3 rounded">
+      <button class="bg-black hover:bg-white w-[100%] hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4 mx-3 rounded">
         Set Profil
       </button>
     </Container>

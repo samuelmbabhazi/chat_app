@@ -79,14 +79,11 @@ const Login = () => {
             Dont have an account ? <Link to={"/signup"}>Signup</Link>
           </span>
         </form>
-        {/* <div className="text">
+        <div className="text">
           <h1>Welcome Friend"</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-            temporibus velit asperiores, blanditiis enim laboriosam doloremque!
-          </p>
-          <img src="s2.svg" alt="" width={500} />
-        </div> */}
+
+          <img src="s1.svg" alt="" width={500} />
+        </div>
       </FormContainer>
     </>
   );
@@ -101,23 +98,29 @@ const FormContainer = styled.div`
   color: black;
   gap: 1rem;
   align-items: center;
-  /* background-color: #000000ce;
+
   .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-left: 10px;
     h1 {
       color: black;
-      font-size: 45px;
+
       width: 330px;
       font-size: 72px;
       font-weight: bold;
-      background: -webkit-linear-gradient(#eee, #4d00c2);
+      /* background: -webkit-linear-gradient(gray, white);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-text-fill-color: transparent; */
     }
     p {
       width: 400px;
       color: gray;
     }
-  } */
+  }
 
   .brand {
     display: flex;

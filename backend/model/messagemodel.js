@@ -7,6 +7,7 @@ const messageSchema = mongoose.Schema(
     from: { type: String },
 
     to: { type: String },
+    toname: { type: String },
   },
   {
     timestamps: true,
