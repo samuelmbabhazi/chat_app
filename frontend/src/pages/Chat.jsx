@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { messageget, usersRouter } from "../utils/Api";
+import { messageget, usersRouter, host } from "../utils/Api";
 import Message from "../components/Message";
 import Users from "../components/Users";
 import { useNavigate } from "react-router-dom";
 import Deconnect from "../components/Deconnect";
 import Welcome from "../components/Welcome";
+import { io } from "socket.io-client";
+import { useRef } from "react";
 
 const Chat = () => {
+  const socket = useRef();
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [messages, setmessage] = useState();
@@ -29,6 +32,14 @@ const Chat = () => {
       to: toId,
       toname: toUser,
     });
+    socket.current.emit("send-msg", {
+      message: input,
+      from: currentId,
+      to: toId,
+      toname: toUser,
+    });
+    console.log("messages envoyer");
+
     if (data.status === false) {
       console.log("une erreur c'est produite au niveau des data");
     } else {
@@ -56,6 +67,12 @@ const Chat = () => {
     confUser();
   }, []);
   useEffect(() => {
+    if (currentuser) {
+      socket.current = io(host);
+      socket.current.emit("add-user", currentuser._id);
+    }
+  }, [currentuser]);
+  useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
     axios(usersRouter, {
       method: "GET",
@@ -64,11 +81,9 @@ const Chat = () => {
       },
     })
       .then(function (response) {
-        // handle success
         setUsers(response.data.allUsers);
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       });
 
@@ -79,14 +94,22 @@ const Chat = () => {
       },
     })
       .then(function (response) {
-        // handle success
         setmessage(response.data);
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       });
-  }, []);
+  }, [messages]);
+
+  useEffect(() => {
+    if (socket.current) {
+      socket.current.on("msg-recieved", (input) => {
+        setmessage({
+          message: input,
+        });
+      });
+    }
+  }, [messages]);
   const myMessages = messages?.message.filter((elm) => {
     if (
       (elm.to === toId && elm.from === currentId) ||
@@ -96,10 +119,15 @@ const Chat = () => {
     } else return false;
   });
 
-  if (!(users || messages)) {
+  if (users === undefined || messages === undefined) {
     return (
-      <div class="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
+      <div class="fixed top-0 right-0 h-screen w-screen z-50 flex-col flex justify-center items-center">
         <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+        <br />
+        Loading...
+        <p class="w-1/3 text-center text-[gray]">
+          This may take a few seconds, please don't close this page.
+        </p>
       </div>
     );
   } else {
