@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import axios from "axios";
 import { registerRouter } from "../utils/Api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -13,24 +15,38 @@ const Register = () => {
     password: "",
     confirmpassword: "",
   });
-
+  const showToastMessageFailed = (message) => {
+    toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+  const showToastMessage = (message) => {
+    toast.success(message, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("is in validation", registerRouter);
     const { password, username, email } = values;
-    console.log(values);
-    const { data } = await axios.post(registerRouter, {
-      username,
-      email,
-      password,
-    });
-    if (data.status === false) {
-      console.log("une erreur c'est produite au niveau des data");
+    if (
+      values.password.trim() !== "" &&
+      values.username.trim() !== "" &&
+      values.email.trim() !== ""
+    ) {
+      const { data } = await axios.post(registerRouter, {
+        username,
+        email,
+        password,
+      });
+      if (data.status === false) {
+        showToastMessageFailed("Error");
+      } else {
+        showToastMessage("Success");
+        navigate("/login");
+      }
     } else {
-      console.log("bien enregistre");
-      localStorage.setItem("chat-app-user", JSON.stringify(data.user));
-      navigate("/login");
+      showToastMessageFailed("Complete all fields");
     }
   };
 
@@ -53,45 +69,49 @@ const Register = () => {
               GoChat<sup>42</sup>
             </h1>
           </div>
-          <label for="inp" class="inp">
+          <label for="inp" className="inp">
             <input
               type="text"
               name="username"
               onChange={(e) => handleChange(e)}
               placeholder="&nbsp;"
+              required
             />
-            <span class="label">Username</span>
-            <span class="focus-bg"></span>
+            <span className="label">Username</span>
+            <span className="focus-bg"></span>
           </label>
-          <label for="inp" class="inp">
+          <label for="inp" className="inp">
             <input
               type="email"
               name="email"
               onChange={(e) => handleChange(e)}
               placeholder="&nbsp;"
+              required
             />
-            <span class="label">Email</span>
-            <span class="focus-bg"></span>
+            <span className="label">Email</span>
+            <span className="focus-bg"></span>
           </label>
-          <label for="inp" class="inp">
+          <label for="inp" className="inp">
             <input
               type="password"
               name="password"
               onChange={(e) => handleChange(e)}
               placeholder="&nbsp;"
+              required
             />
-            <span class="label">Password</span>
-            <span class="focus-bg"></span>
+            <span className="label">Password</span>
+            <span className="focus-bg"></span>
           </label>
-          <label for="inp" class="inp">
+          <label for="inp" className="inp">
             <input
               type="password"
               name="confirmpassword"
               onChange={(e) => handleChange(e)}
               placeholder="&nbsp;"
+              required
             />
-            <span class="label">Confirmpassword</span>
-            <span class="focus-bg"></span>
+            <span className="label">Confirmpassword</span>
+            <span className="focus-bg"></span>
           </label>
 
           <button type="submit">signup</button>
@@ -99,6 +119,7 @@ const Register = () => {
             Already have an account ? <Link to={"/login"}>Login</Link>
           </span>
         </form>
+        <ToastContainer />
       </Container>
     </>
   );

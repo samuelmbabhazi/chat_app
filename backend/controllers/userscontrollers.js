@@ -69,6 +69,7 @@ module.exports.login = async (req, res, next) => {
   }
 };
 
+//controlleur getusers
 module.exports.getusers = async (req, res, next) => {
   const allUsers = await User.find();
   try {

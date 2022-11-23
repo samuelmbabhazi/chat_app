@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import axios from "axios";
 import { loginRouter } from "../utils/Api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,6 +13,17 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const showToastMessageFailed = (message) => {
+    toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+  const showToastMessage = (message) => {
+    toast.success(message, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/");
@@ -20,20 +33,20 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("is in validation", loginRouter);
     const { password, username } = values;
     const { data } = await axios.post(loginRouter, {
       password,
       username,
     });
     if (data.status === false) {
-      console.log("une erreur c'est produite au niveau des data");
+      showToastMessageFailed("Username Or Password Invalid");
     } else {
-      console.log(data.token);
+      showToastMessage("Connect");
       localStorage.setItem("token", JSON.stringify(data.token));
       console.log("bien connecter");
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("userId", JSON.stringify(data.userId));
+
       navigate("/");
     }
   };
@@ -51,27 +64,29 @@ const Login = () => {
               GoChat<sup>42</sup>
             </h1>
           </div>
-          <label for="inp" class="inp">
+          <label for="inp" className="inp">
             <input
               type="text"
               name="username"
               onChange={(e) => handleChange(e)}
               id="inp"
               placeholder="&nbsp;"
+              required
             />
-            <span class="label">Username</span>
-            <span class="focus-bg"></span>
+            <span className="label">Username</span>
+            <span className="focus-bg"></span>
           </label>
-          <label for="inp" class="inp">
+          <label for="inp" className="inp">
             <input
               type="password"
               name="password"
               onChange={(e) => handleChange(e)}
               id="inp"
               placeholder="&nbsp;"
+              required
             />
-            <span class="label">Password</span>
-            <span class="focus-bg"></span>
+            <span className="label">Password</span>
+            <span className="focus-bg"></span>
           </label>
 
           <button type="submit">Login</button>
@@ -84,6 +99,7 @@ const Login = () => {
 
           <img src="s1.svg" alt="" width={500} />
         </div>
+        <ToastContainer />
       </FormContainer>
     </>
   );

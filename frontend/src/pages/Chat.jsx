@@ -19,10 +19,88 @@ const Chat = () => {
   const [currentId, setCurrentId] = useState(undefined);
   const [toId, settoId] = useState(undefined);
   const [toUser, settoUser] = useState("Welcome");
-  const [conversation, setConversation] = useState();
-
   const [input, setInput] = useState("");
 
+  //recuperation de l'utilisateur courant
+  //_______________________________________________________________________________________________________
+  useEffect(() => {
+    const confUser = async () => {
+      if (!localStorage.getItem("user")) {
+        navigate("/login");
+      } else {
+        setCurrentuser(await JSON.parse(localStorage.getItem("user")));
+        setCurrentId(await JSON.parse(localStorage.getItem("userId")));
+      }
+    };
+    confUser();
+  }, []);
+  useEffect(() => {
+    if (currentuser) {
+      socket.current = io(host);
+      socket.current.emit("add-user", currentuser._id);
+    }
+  }, [currentuser]);
+  //___________________________________________________________________________________________________________
+
+  //recuperation des Users
+  //_______________________________________________________________________________________________
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    axios(usersRouter, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then(function (response) {
+        setUsers(response.data.allUsers);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    //______________________________________________________________________________________________________
+
+    //recuperations des messages
+    //_______________________________________________________________________________________________________
+    axios(messageget, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then(function (response) {
+        setmessage(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [messages]);
+
+  useEffect(() => {
+    if (socket.current) {
+      socket.current.on("msg-recieved", (input) => {
+        setmessage({
+          message: input,
+        });
+      });
+    }
+  }, [messages]);
+  //_______________________________________________________________________________________________
+
+  //filtre des messages
+  //________________________________________________________________________________________________
+  const myMessages = messages?.message.filter((elm) => {
+    if (
+      (elm.to === toId && elm.from === currentId) ||
+      (elm.to === currentId && elm.from === toId)
+    ) {
+      return true;
+    } else return false;
+  });
+  //__________________________________________________________________________________________________
+
+  //Envoi de message
+  //_________________________________________________________________________________________________________
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -49,83 +127,20 @@ const Chat = () => {
   const handleChange = (event) => {
     setInput(event.target.value);
   };
+  //______________________________________________________________________________________________________
+  //fonction de changement de chat
 
   const changeChat = (id, name) => {
     settoId(id);
     settoUser(name);
   };
-
-  useEffect(() => {
-    const confUser = async () => {
-      if (!localStorage.getItem("user")) {
-        navigate("/login");
-      } else {
-        setCurrentuser(await JSON.parse(localStorage.getItem("user")));
-        setCurrentId(await JSON.parse(localStorage.getItem("userId")));
-      }
-    };
-    confUser();
-  }, []);
-  useEffect(() => {
-    if (currentuser) {
-      socket.current = io(host);
-      socket.current.emit("add-user", currentuser._id);
-    }
-  }, [currentuser]);
-  useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    axios(usersRouter, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then(function (response) {
-        setUsers(response.data.allUsers);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-    axios(messageget, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then(function (response) {
-        setmessage(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [messages]);
-
-  useEffect(() => {
-    if (socket.current) {
-      socket.current.on("msg-recieved", (input) => {
-        setmessage({
-          message: input,
-        });
-      });
-    }
-  }, [messages]);
-  const myMessages = messages?.message.filter((elm) => {
-    if (
-      (elm.to === toId && elm.from === currentId) ||
-      (elm.to === currentId && elm.from === toId)
-    ) {
-      return true;
-    } else return false;
-  });
-
   if (users === undefined || messages === undefined) {
     return (
-      <div class="fixed top-0 right-0 h-screen w-screen z-50 flex-col flex justify-center items-center">
-        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+      <div className="fixed top-0 right-0 h-screen w-screen z-50 flex-col flex justify-center items-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
         <br />
         Loading...
-        <p class="w-1/3 text-center text-[gray]">
+        <p className="w-1/3 text-center text-[gray]">
           This may take a few seconds, please don't close this page.
         </p>
       </div>
@@ -133,50 +148,51 @@ const Chat = () => {
   } else {
     return (
       <Container>
-        <div class="flex h-screen antialiased text-gray-800">
-          <div class="flex flex-row h-full w-full overflow-x-hidden">
-            <div class="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
-              <div class="flex flex-row items-center  h-12 w-full my-3">
-                <div class=" font-bold text-2xl">
+        <div className="flex h-screen antialiased text-gray-800">
+          <div className="flex flex-row h-full w-full overflow-x-hidden">
+            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
+              <div className="flex flex-row items-center  h-12 w-full ">
+                <div className=" font-bold text-2xl">
                   <div className="brand flex">
                     <img src="lo.png" alt="" width={40} />
-                    <h1 class="">
-                      GOCHAT<sup class="text-[15px] ">42</sup>
+                    <h1 className="">
+                      GOCHAT<sup className="text-[15px] ">42</sup>
                     </h1>
                   </div>
                 </div>
               </div>
 
-              <div class="overflow-hidden relative w-10 h-10  rounded-full  dark:bg-gray-600">
+              <div className="overflow-hidden relative w-10 h-10  rounded-full  dark:bg-gray-600">
                 <svg
-                  class="absolute -left-1 w-12 h-12 text-black"
+                  className="absolute -left-1 w-12 h-12 text-black"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
               </div>
-              <div class="text-sm font-semibold mt-2 text-black">
+              <div className="text-sm font-semibold mt-2 text-black">
                 <a href="/profil">{currentuser}</a>
               </div>
-              <div class="text-xs text-gray-500 text-gray">Developper</div>
+              <div className="text-xs text-gray-500 text-gray">Developper</div>
 
-              <div class="flex flex-col mt-8">
-                <div class="flex flex-row items-center justify-between text-xs">
-                  <span class="font-bold">
-                    <button class="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded">
+              <div className="flex flex-col mt-3">
+                <div className="flex flex-row items-center justify-between text-xs">
+                  <span className="font-bold">
+                    <button className="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded">
                       Conversations
                     </button>{" "}
-                    <button class="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4 mx-3 rounded">
+                    <button className="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4 mx-3 rounded">
                       All users
                     </button>
                   </span>
                 </div>
+
                 <Users
                   users={users}
                   changeChat={changeChat}
@@ -185,31 +201,31 @@ const Chat = () => {
               </div>
               <Deconnect />
             </div>
-            <div class="flex flex-col flex-auto h-full p-6 ">
-              <div class="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
-                <button class="flex flex-row items-center   p-2">
-                  <div class="overflow-hidden relative w-10 h-10 bg-opacity-25 backdrop-filter backdrop-blur-lg  rounded-full  dark:bg-gray-600">
+            <div className="flex flex-col flex-auto h-full p-6 ">
+              <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
+                <button className="flex flex-row items-center   p-2">
+                  <div className="overflow-hidden relative w-10 h-10 bg-opacity-25 backdrop-filter backdrop-blur-lg  rounded-full  dark:bg-gray-600">
                     <svg
-                      class="absolute -left-1 w-12 h-12 text-black"
+                      className="absolute -left-1 w-12 h-12 text-black"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
                   </div>
-                  <div class="font-medium text-black px-3 ">
+                  <div className="font-medium text-black px-3 ">
                     <div>{toUser}</div>
-                    <div class="text-sm text-gray-500   ">GoChat</div>
+                    <div className="text-sm text-gray-500   ">GoChat</div>
                   </div>
                 </button>
                 <div
                   id="contact"
-                  class="flex flex-col h-full px-14 overflow-x-auto mb-4"
+                  className="flex flex-col h-full px-14 overflow-x-auto mb-4"
                 >
                   {toId === undefined ? (
                     <Welcome />
@@ -222,70 +238,70 @@ const Chat = () => {
                     />
                   )}
                 </div>
-                <div class="flex flex-row items-center h-16 bg-opacity-25 backdrop-filter backdrop-blur-lg bg-black w-full px-4">
+                <div className="flex flex-row items-center h-16 bg-opacity-25 backdrop-filter backdrop-blur-lg bg-black w-full px-4">
                   <div>
-                    <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
+                    <button className="flex items-center justify-center text-gray-400 hover:text-gray-600">
                       <svg
-                        class="w-5 h-5 text-white"
+                        className="w-5 h-5 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
                         ></path>
                       </svg>
                     </button>
                   </div>
-                  <div class="flex-grow ml-4">
-                    <div class="relative w-full">
+                  <div className="flex-grow ml-4">
+                    <div className="relative w-full">
                       <input
                         name="message"
                         type="text"
                         value={input}
-                        class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                        className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                         onChange={(e) => handleChange(e)}
                       />
-                      <button class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
+                      <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
                         <svg
-                          class="w-6 h-6"
+                          className="w-6 h-6"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                           ></path>
                         </svg>
                       </button>
                     </div>
                   </div>
-                  <div class="ml-4">
+                  <div className="ml-4">
                     <button
                       type="submit"
                       onClick={(event) => handleSubmit(event)}
-                      class="flex items-center justify-center     rounded-xl text-white px-4 py-1 flex-shrink-0"
+                      className="flex items-center justify-center     rounded-xl text-white px-4 py-1 flex-shrink-0"
                     >
-                      <span class="ml-2">
+                      <span className="ml-2">
                         <svg
-                          class="w-8 h-8 transform rotate-45 -mt-px hover:text-black"
+                          className="w-8 h-8 transform rotate-45 -mt-px hover:text-black"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                           ></path>
                         </svg>
