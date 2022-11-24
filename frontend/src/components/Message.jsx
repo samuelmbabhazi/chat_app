@@ -12,7 +12,6 @@ const Message = ({ messages, toId, currentId, toUser }) => {
                   <div key={key} className="col-start-6 col-end-13  rounded-lg">
                     <div className="flex items-center justify-start flex-row-reverse gap-3 ">
                       <div className="relative ml-3 text-sm bg-black py-2 px-4 shadow rounded-xl text-white">
-                        <span className="text-[gray] text-sm">Moi</span>
                         <div>{mes.message}</div>
                       </div>
                     </div>
@@ -24,7 +23,6 @@ const Message = ({ messages, toId, currentId, toUser }) => {
                   <div key={key} className="col-start-1 col-end-8  rounded-lg">
                     <div className="flex flex-row items-center">
                       <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl text-black">
-                        <span className="text-[gray] text-sm">{toUser}</span>
                         <div>{mymes}</div>
                       </div>
                     </div>

@@ -4,10 +4,9 @@ const messageSchema = mongoose.Schema(
   {
     message: { type: String, required: true },
 
-    from: { type: String },
+    from: { type: mongoose.Types.ObjectId },
 
-    to: { type: String },
-    toname: { type: String },
+    to: { type: mongoose.Types.ObjectId },
   },
   {
     timestamps: true,

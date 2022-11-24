@@ -16,7 +16,9 @@ const Chat = () => {
   const [users, setUsers] = useState([]);
   const [messages, setmessage] = useState();
   const [currentuser, setCurrentuser] = useState(undefined);
-  const [currentId, setCurrentId] = useState(undefined);
+  const [currentId, setCurrentId] = useState(
+    JSON.parse(localStorage.getItem("userId"))
+  );
   const [toId, settoId] = useState(undefined);
   const [toUser, settoUser] = useState("Welcome");
   const [input, setInput] = useState("");
@@ -90,10 +92,7 @@ const Chat = () => {
   //filtre des messages
   //________________________________________________________________________________________________
   const myMessages = messages?.message.filter((elm) => {
-    if (
-      (elm.to === toId && elm.from === currentId) ||
-      (elm.to === currentId && elm.from === toId)
-    ) {
+    if (elm.to === toId || elm.from === toId) {
       return true;
     } else return false;
   });
