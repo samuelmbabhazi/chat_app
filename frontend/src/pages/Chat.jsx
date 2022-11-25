@@ -22,6 +22,8 @@ const Chat = () => {
   const [toId, settoId] = useState(undefined);
   const [toUser, settoUser] = useState("Welcome");
   const [input, setInput] = useState("");
+  let converse = [];
+  let array = [];
 
   //recuperation de l'utilisateur courant
   //_______________________________________________________________________________________________________
@@ -64,7 +66,7 @@ const Chat = () => {
 
     //recuperations des messages
     //_______________________________________________________________________________________________________
-    axios(messageget, {
+    axios(`${messageget}${currentId}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
@@ -91,11 +93,23 @@ const Chat = () => {
 
   //filtre des messages
   //________________________________________________________________________________________________
-  const myMessages = messages?.message.filter((elm) => {
+  const myMessages = messages?.messages.filter((elm) => {
+    array.push(elm.to, elm.from);
+    converse = [...new Set(array)];
     if (elm.to === toId || elm.from === toId) {
       return true;
     } else return false;
   });
+
+  //filtre user
+  const myUsers = users?.filter((elm) => {
+    if (converse.includes(elm._id)) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
   //__________________________________________________________________________________________________
 
   //Envoi de message
@@ -133,7 +147,7 @@ const Chat = () => {
     settoId(id);
     settoUser(name);
   };
-  if (users === undefined || messages === undefined) {
+  if (users === undefined) {
     return (
       <div className="fixed top-0 right-0 h-screen w-screen z-50 flex-col flex justify-center items-center">
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
@@ -150,9 +164,9 @@ const Chat = () => {
         <div className="flex h-screen antialiased text-gray-800">
           <div className="flex flex-row h-full w-full overflow-x-hidden">
             <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
-              <div className="flex flex-row items-center  h-12 w-full ">
+              <div className="flex flex-row items-center justify-center h-12 w-full ">
                 <div className=" font-bold text-2xl">
-                  <div className="brand flex">
+                  <div className="brand flex items-center ">
                     <img src="lo.png" alt="" width={40} />
                     <h1 className="">
                       GOCHAT<sup className="text-[15px] ">42</sup>
@@ -160,40 +174,40 @@ const Chat = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="overflow-hidden relative w-10 h-10  rounded-full  dark:bg-gray-600">
-                <svg
-                  className="absolute -left-1 w-12 h-12 text-black"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
+              <div className="flex flex-col items-center	">
+                <div className="overflow-hidden  relative w-10 h-10  rounded-full  dark:bg-gray-600">
+                  <svg
+                    className="absolute -left-1 w-12 h-12 text-black"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="text-sm font-semibold mt-2 text-black">
+                  <a href="/profil">{currentuser}</a>
+                </div>
+                <div className="text-xs text-gray-500 text-gray">
+                  Developper
+                </div>
               </div>
-              <div className="text-sm font-semibold mt-2 text-black">
-                <a href="/profil">{currentuser}</a>
-              </div>
-              <div className="text-xs text-gray-500 text-gray">Developper</div>
 
               <div className="flex flex-col mt-3">
                 <div className="flex flex-row items-center justify-between text-xs">
-                  <span className="font-bold">
-                    <button className="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded">
+                  <span className="font-bold w-[100%]">
+                    <button className="bg-black w-[100%] hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded">
                       Conversations
                     </button>{" "}
-                    <button className="bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4 mx-3 rounded">
-                      All users
-                    </button>
                   </span>
                 </div>
 
                 <Users
-                  users={users}
+                  users={myUsers}
                   changeChat={changeChat}
                   settoId={settoId}
                 />
@@ -307,6 +321,41 @@ const Chat = () => {
                       </span>
                     </button>
                   </div>
+                </div>
+              </div>
+            </div>
+            {/* //rightbar */}
+            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
+              <div className="flex flex-col mt-3">
+                <div className="flex flex-row items-center justify-between text-xs">
+                  <span className="font-bold w-[100%] justify-center">
+                    <button className="bg-black w-[100%] hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4  rounded">
+                      All users
+                    </button>
+                  </span>
+                </div>
+
+                <div
+                  id="contact"
+                  className="flex flex-col space-y-1 mt-4  h-90 overflow-y-auto "
+                >
+                  {users &&
+                    users.map((name, index) => {
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => changeChat(name._id, name.username)}
+                          className="flex flex-row items-center hover:border-b-2 hover:border-black border-b-[1px] border-[#f5f5f5]  p-2"
+                        >
+                          <div className="flex items-center justify-center h-8 w-8 bg-black rounded-full text-white">
+                            {name.username[0]?.toUpperCase()}
+                          </div>
+                          <div className="ml-2 text-sm font-semibold">
+                            {name.username}
+                          </div>
+                        </button>
+                      );
+                    })}
                 </div>
               </div>
             </div>

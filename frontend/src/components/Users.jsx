@@ -18,9 +18,6 @@ const Users = ({ users, changeChat }) => {
                 {name.username[0]?.toUpperCase()}
               </div>
               <div className="ml-2 text-sm font-semibold">{name.username}</div>
-              {/* <div class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-5 w-5 rounded-full leading-none">
-                3
-              </div> */}
             </button>
           );
         })}

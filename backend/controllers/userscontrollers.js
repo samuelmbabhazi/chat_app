@@ -1,8 +1,9 @@
 const User = require("../model/usermodel");
-const Message = require("../model/messagemodel");
+const Messages = require("../model/messagemodel");
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { default: mongoose } = require("mongoose");
 
 //controller signup
 module.exports.signup = async (req, res, next) => {
@@ -82,17 +83,22 @@ module.exports.getusers = async (req, res, next) => {
 };
 
 module.exports.getmesssages = async (req, res, next) => {
-  const message = await Message.find();
+  const messages = await Messages.find({
+    $or: [
+      { from: new mongoose.Types.ObjectId(req.params.currentId) },
+      { to: new mongoose.Types.ObjectId(req.params.currentId) },
+    ],
+  }).exec();
   try {
-    if (message) {
-      res.json({ status: true, message });
+    if (messages) {
+      res.json({ status: true, messages });
     }
   } catch (error) {
     next(error);
   }
 };
 module.exports.postmesssages = async (req, res, next) => {
-  var message = new Message(req.body);
+  var message = new Messages(req.body);
   message.save({
     message: message,
   });
