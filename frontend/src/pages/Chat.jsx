@@ -163,7 +163,7 @@ const Chat = () => {
       <Container>
         <div className="flex h-screen antialiased text-gray-800">
           <div className="flex flex-row h-full w-full overflow-x-hidden">
-            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
+            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 max-[768px]:z-50 max-[768px]:w-[100%]">
               <div className="flex flex-row items-center justify-center h-12 w-full ">
                 <div className=" font-bold text-2xl">
                   <div className="brand flex items-center ">
@@ -197,7 +197,7 @@ const Chat = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col mt-3">
+              <div className="flex flex-col mt-3 ">
                 <div className="flex flex-row items-center justify-between text-xs">
                   <span className="font-bold w-[100%]">
                     <button className="bg-black w-[100%] hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded">
@@ -207,7 +207,7 @@ const Chat = () => {
                 </div>
 
                 <Users
-                  users={myUsers}
+                  myusers={myUsers}
                   changeChat={changeChat}
                   settoId={settoId}
                 />
@@ -337,7 +337,7 @@ const Chat = () => {
 
                 <div
                   id="contact"
-                  className="flex flex-col space-y-1 mt-4  h-90 overflow-y-auto "
+                  className="flex flex-col space-y-1 mt-4  h-96 overflow-y-auto "
                 >
                   {users &&
                     users.map((name, index) => {

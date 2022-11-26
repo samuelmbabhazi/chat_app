@@ -21,6 +21,12 @@ const userSchema = new Schema({
     min: 8,
   },
 });
+userSchema.pre("save", function (next) {
+  this.username =
+    this.username.trim()[0].toUpperCase() +
+    this.username.slice(1).toLowerCase();
+  next();
+});
 
 userSchema.plugin(uniqueValidator);
 

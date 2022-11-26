@@ -286,10 +286,12 @@ const Container = styled.div`
       }
     }
   }
-
-  @media screen and(min-width: 900px) {
+  @media screen and (max-width: 900px) {
     .text {
       display: none;
+    }
+    form {
+      width: 100%;
     }
   }
 `;

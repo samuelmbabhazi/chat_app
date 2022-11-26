@@ -72,7 +72,7 @@ module.exports.login = async (req, res, next) => {
 
 //controlleur getusers
 module.exports.getusers = async (req, res, next) => {
-  const allUsers = await User.find();
+  const allUsers = await User.find().sort({ username: 1 });
   try {
     if (allUsers) {
       res.json({ status: true, allUsers });
@@ -88,7 +88,9 @@ module.exports.getmesssages = async (req, res, next) => {
       { from: new mongoose.Types.ObjectId(req.params.currentId) },
       { to: new mongoose.Types.ObjectId(req.params.currentId) },
     ],
-  }).exec();
+  })
+    .sort({ updateAt: 1 })
+    .exec();
   try {
     if (messages) {
       res.json({ status: true, messages });

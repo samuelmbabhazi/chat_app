@@ -1,13 +1,13 @@
 import React from "react";
 
-const Users = ({ users, changeChat }) => {
+const Users = ({ myusers, changeChat }) => {
   return (
     <div
       id="contact"
-      className="flex flex-col space-y-1 mt-4 -mx-2 h-60 overflow-y-auto "
+      className="flex flex-col space-y-1 mt-4 -mx-2 h-96 overflow-y-auto "
     >
-      {users &&
-        users.map((name, index) => {
+      {myusers &&
+        myusers.map((name, index) => {
           return (
             <button
               key={index}
