@@ -7,11 +7,8 @@ import Users from "../components/Users";
 import { useNavigate } from "react-router-dom";
 import Deconnect from "../components/Deconnect";
 import Welcome from "../components/Welcome";
-import { io } from "socket.io-client";
-import { useRef } from "react";
 
-const Chat = () => {
-  const socket = useRef();
+const Chat = ({ socket }) => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [messages, setmessage] = useState();
@@ -24,6 +21,11 @@ const Chat = () => {
   const [input, setInput] = useState("");
   let converse = [];
   let array = [];
+
+  function formatDateFromTimestamp(timestamp) {
+    const date = new Date(timestamp);
+    return date.toLocaleString();
+  }
 
   //recuperation de l'utilisateur courant
   //_______________________________________________________________________________________________________
@@ -38,15 +40,15 @@ const Chat = () => {
     };
     confUser();
   }, []);
-  useEffect(() => {
-    if (currentuser) {
-      socket.current = io(host);
-      socket.current.emit("add-user", currentuser._id);
-    }
-  }, [currentuser]);
-  //___________________________________________________________________________________________________________
 
-  //recuperation des Users
+  //___________________________________________________________________________________________________________
+  useEffect(() => {
+    socket.on("msg-recieved", (data) => {
+      setmessage((state) => [...state, data]);
+    });
+    return () => socket.off("msg-recieved");
+  }, [socket]);
+
   //_______________________________________________________________________________________________
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
@@ -73,27 +75,21 @@ const Chat = () => {
       },
     })
       .then(function (response) {
-        setmessage(response.data);
+        console.log(response.data.messages);
+
+        setmessage(response.data.messages);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [messages]);
+  }, []);
 
-  useEffect(() => {
-    if (socket.current) {
-      socket.current.on("msg-recieved", (input) => {
-        setmessage({
-          message: input,
-        });
-      });
-    }
-  }, [messages]);
+  console.log(messages);
   //_______________________________________________________________________________________________
 
   //filtre des messages
   //________________________________________________________________________________________________
-  const myMessages = messages?.messages.filter((elm) => {
+  const myMessages = messages?.filter((elm) => {
     array.push(elm.to, elm.from);
     converse = [...new Set(array)];
     if (elm.to === toId || elm.from === toId) {
@@ -121,13 +117,13 @@ const Chat = () => {
       message: input,
       from: currentId,
       to: toId,
-      toname: toUser,
+      date: Date.now(),
     });
-    socket.current.emit("send-msg", {
+    socket.emit("send-msg", {
       message: input,
       from: currentId,
       to: toId,
-      toname: toUser,
+      date: Date.now(),
     });
     console.log("messages envoyer");
 
@@ -163,7 +159,7 @@ const Chat = () => {
       <Container>
         <div className="flex h-screen antialiased text-gray-800">
           <div className="flex flex-row h-full w-full overflow-x-hidden">
-            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 max-[768px]:z-50 max-[768px]:w-[100%]">
+            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 ">
               <div className="flex flex-row items-center justify-center h-12 w-full ">
                 <div className=" font-bold text-2xl">
                   <div className="brand flex items-center ">
@@ -248,6 +244,7 @@ const Chat = () => {
                       toId={toId}
                       currentId={currentId}
                       toUser={toUser}
+                      formatDateFromTimestamp={formatDateFromTimestamp}
                     />
                   )}
                 </div>

@@ -7,7 +7,7 @@ import { loginRouter } from "../utils/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Login = () => {
+const Login = ({ socket }) => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     username: "",
@@ -46,7 +46,7 @@ const Login = () => {
       console.log("bien connecter");
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("userId", JSON.stringify(data.userId));
-
+      socket.emit("connected", { username });
       navigate("/");
     }
   };

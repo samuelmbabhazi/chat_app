@@ -1,6 +1,6 @@
 import React from "react";
 
-const Users = ({ myusers, changeChat }) => {
+const Users = ({ myusers, changeChat, myNewMessages }) => {
   return (
     <div
       id="contact"
@@ -17,7 +17,13 @@ const Users = ({ myusers, changeChat }) => {
               <div className="flex items-center justify-center h-8 w-8 bg-black rounded-full text-white">
                 {name.username[0]?.toUpperCase()}
               </div>
-              <div className="ml-2 text-sm font-semibold">{name.username}</div>
+              <div className="ml-2 text-sm font-semibold">
+                {name.username}
+                <br />
+                <span className="text-sm text-[gray]">
+                  {/* {myNewMessages[0]?.message} */}
+                </span>
+              </div>
             </button>
           );
         })}
