@@ -276,7 +276,8 @@ const Chat = ({ socket }) => {
                         name="message"
                         type="text"
                         value={input}
-                        className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                        placeholder="Tap Your Message Here"
+                        className="flex w-full focus border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                         onChange={(e) => handleChange(e)}
                       />
                       <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
