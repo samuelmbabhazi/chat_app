@@ -1,4 +1,4 @@
-export const host = "http://localhost:9000";
+export const host = "https://gochat42.onrender.com";
 
 export const registerRouter = `${host}/api/auth/signup`;
 export const loginRouter = `${host}/api/auth/login`;
