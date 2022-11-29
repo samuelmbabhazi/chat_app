@@ -4,7 +4,7 @@ const Message = ({
   messages,
   toId,
   currentId,
-  toUser,
+
   formatDateFromTimestamp,
 }) => {
   return (
