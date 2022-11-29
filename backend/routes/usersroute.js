@@ -13,6 +13,6 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.get("/users", auth, getusers);
 router.get("/messages/:currentId", auth, getmesssages);
-router.post("/messages", auth, postmesssages);
+router.post("/messages", postmesssages);
 
 module.exports = router;
