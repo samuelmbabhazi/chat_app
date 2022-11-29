@@ -18,7 +18,7 @@ const Chat = ({ socket }) => {
   );
   const [toId, settoId] = useState(undefined);
   const [toUser, settoUser] = useState("Welcome");
-  const [input, setInput] = useState("ok");
+  const [input, setInput] = useState("");
   let converse = [];
   let array = [];
 
