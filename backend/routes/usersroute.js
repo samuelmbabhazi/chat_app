@@ -12,7 +12,7 @@ const router = require("express").Router();
 router.post("/signup", signup);
 router.post("/login", login);
 router.get("/users", auth, getusers);
-router.get("/messages/:currentId", getmesssages);
-router.post("/messages", postmesssages);
+router.get("/messages/:currentId", auth, getmesssages);
+router.post("/messages", auth, postmesssages);
 
 module.exports = router;

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { messageget, usersRouter, host } from "../utils/Api";
+import { messageget, usersRouter } from "../utils/Api";
 import Message from "../components/Message";
 import Users from "../components/Users";
 import { useNavigate } from "react-router-dom";
 import Deconnect from "../components/Deconnect";
 import Welcome from "../components/Welcome";
-import InputEmoji from "react-input-emoji";
 
 const Chat = ({ socket }) => {
   const navigate = useNavigate();
