@@ -4,7 +4,7 @@ const Users = ({ myusers, changeChat, messages }) => {
   return (
     <div
       id="contact"
-      className="flex flex-col space-y-1 mt-4 -mx-2 h-96 overflow-y-auto "
+      className="flex flex-col space-y-1 mt-4 -mx-2 h-96 z-20 overflow-y-auto "
     >
       {myusers &&
         myusers.map((name, index) => {
