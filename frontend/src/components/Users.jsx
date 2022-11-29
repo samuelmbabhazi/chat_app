@@ -1,6 +1,6 @@
 import React from "react";
 
-const Users = ({ myusers, changeChat, myNewMessages }) => {
+const Users = ({ myusers, changeChat, messages }) => {
   return (
     <div
       id="contact"
@@ -20,9 +20,6 @@ const Users = ({ myusers, changeChat, myNewMessages }) => {
               <div className="ml-2 text-sm font-semibold">
                 {name.username}
                 <br />
-                <span className="text-sm text-[gray]">
-                  {/* {myNewMessages[0]?.message} */}
-                </span>
               </div>
             </button>
           );

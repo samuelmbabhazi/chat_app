@@ -20,7 +20,7 @@ const Message = ({
                       <div className="relative ml-3 text-sm bg-black py-2 px-4 shadow rounded-xl text-white">
                         <div>{mes.message}</div>
                         <span className="text-[10px] text-[gray]">
-                          {formatDateFromTimestamp(mes.createdAt)}
+                          {formatDateFromTimestamp(mes.date)}
                         </span>
                       </div>
                     </div>
@@ -34,7 +34,7 @@ const Message = ({
                       <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl text-black">
                         <div>{mymes}</div>
                         <span className="text-[10px] text-[gray]">
-                          {formatDateFromTimestamp(mes.createdAt)}
+                          {formatDateFromTimestamp(mes.date)}
                         </span>
                       </div>
                     </div>

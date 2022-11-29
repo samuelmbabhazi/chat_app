@@ -7,6 +7,7 @@ import Users from "../components/Users";
 import { useNavigate } from "react-router-dom";
 import Deconnect from "../components/Deconnect";
 import Welcome from "../components/Welcome";
+import InputEmoji from "react-input-emoji";
 
 const Chat = ({ socket }) => {
   const navigate = useNavigate();
@@ -18,9 +19,11 @@ const Chat = ({ socket }) => {
   );
   const [toId, settoId] = useState(undefined);
   const [toUser, settoUser] = useState("Welcome");
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("ok");
   let converse = [];
   let array = [];
+
+  //fonction de formatage de la date
 
   function formatDateFromTimestamp(timestamp) {
     const date = new Date(timestamp);
@@ -206,6 +209,7 @@ const Chat = ({ socket }) => {
                   myusers={myUsers}
                   changeChat={changeChat}
                   settoId={settoId}
+                  messages={messages}
                 />
               </div>
               <Deconnect />
@@ -322,7 +326,7 @@ const Chat = ({ socket }) => {
               </div>
             </div>
             {/* //rightbar */}
-            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
+            <div className="flex flex-col py-8 pl-6 pr-2 w-56 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
               <div className="flex flex-col mt-3">
                 <div className="flex flex-row items-center justify-between text-xs">
                   <span className="font-bold w-[100%] justify-center">
