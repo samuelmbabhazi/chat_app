@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Profil from "./pages/Profil";
 import Signup from "./pages/Signup";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:9000");
+const socket = io.connect("https://gochat42.onrender.com");
 
 const App = () => {
   return (
