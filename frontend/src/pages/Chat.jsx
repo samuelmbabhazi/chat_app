@@ -261,9 +261,9 @@ const Chat = ({ socket }) => {
             <div
               ref={chat}
               id="chat"
-              className="flex flex-col flex-auto h-full p-6 "
+              className="flex flex-col flex-auto h-full  min-[620px]:p-6 "
             >
-              <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
+              <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] min-[620px]:rounded-xl h-full  ">
                 <button className="flex flex-row items-center   p-2">
                   <button
                     ref={arrow}

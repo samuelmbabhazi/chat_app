@@ -251,11 +251,12 @@ const Container = styled.div`
 
     input {
       background-color: transparent;
-      padding: 0.8rem;
+      padding: 0.7rem;
       border-bottom: 0.1rem solid black;
       border-radius: 0.4rem;
       color: black;
       width: 100%;
+      line-height: 2rem;
       font-size: 1rem;
       transition: all 0.15s ease;
     }
