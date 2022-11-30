@@ -7,6 +7,7 @@ import Users from "../components/Users";
 import { useNavigate } from "react-router-dom";
 import Deconnect from "../components/Deconnect";
 import Welcome from "../components/Welcome";
+import { FiArrowLeft } from "react-icons/fi";
 
 const Chat = ({ socket }) => {
   const navigate = useNavigate();
@@ -146,7 +147,13 @@ const Chat = ({ socket }) => {
     settoUser(name);
     document.querySelector("#leftbar").classList.add("displayNone");
     document.querySelector("#rightbar").classList.add("displayNone");
+    document.querySelector(".retour").classList.add("visible");
   };
+  const mobileClic = () => {
+    document.querySelector("#leftbar").classList.add("displayBlock");
+    document.querySelector("#rightbar").classList.add("displayNone");
+  };
+
   if (users === undefined) {
     return (
       <div className="fixed top-0 right-0 h-screen w-screen z-50 flex-col flex justify-center items-center">
@@ -230,6 +237,9 @@ const Chat = ({ socket }) => {
             <div className="flex flex-col flex-auto h-full p-6 ">
               <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
                 <button className="flex flex-row items-center   p-2">
+                  <button onClick={() => mobileClic()} className="retour">
+                    <FiArrowLeft />
+                  </button>
                   <div className="overflow-hidden relative w-10 h-10 bg-opacity-25 backdrop-filter backdrop-blur-lg  rounded-full  dark:bg-gray-600">
                     <svg
                       className="absolute -left-1 w-12 h-12 text-black"
@@ -386,6 +396,7 @@ const Chat = ({ socket }) => {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
+
   #mobile {
     display: none;
   }

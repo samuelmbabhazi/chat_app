@@ -24,7 +24,10 @@ body {
 }
 @media screen and (max-width: 576px) {
   .displayBlock {
-    display: block;
+    display: flex;
+  }
+  .visible {
+    visibility: visible;
   }
   .displayNone {
     display: none;
