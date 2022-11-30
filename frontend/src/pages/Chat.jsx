@@ -414,7 +414,7 @@ const Container = styled.div`
       width: 40%;
     }
     #mobconver {
-      width: 40%;
+      width: 45%;
     }
     #leftbar {
       z-index: 20;
