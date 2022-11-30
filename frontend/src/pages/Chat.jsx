@@ -144,6 +144,8 @@ const Chat = ({ socket }) => {
   const changeChat = (id, name) => {
     settoId(id);
     settoUser(name);
+    document.querySelector("#leftbar").classList.add("displayNone");
+    document.querySelector("#rightbar").classList.add("displayNone");
   };
   if (users === undefined) {
     return (
