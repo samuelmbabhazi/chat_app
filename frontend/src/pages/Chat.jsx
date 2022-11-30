@@ -190,20 +190,21 @@ const Chat = ({ socket }) => {
   } else {
     return (
       <Container>
-        <div className="flex h-screen antialiased text-gray-800">
+        <div className="flex h-screen  antialiased text-gray-800">
           <div className="flex flex-row h-full w-full overflow-x-hidden">
             <div
               ref={leftbar}
               id="leftbar"
-              className="flex flex-col   py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 "
+              className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 "
             >
               <div className="flex flex-row items-center justify-center h-12 w-full ">
                 <div className=" font-bold text-2xl">
-                  <div className="brand flex items-center ">
+                  <div className="brand flex  items-center ">
                     <img src="lo.png" alt="" width={40} />
                     <h1 className="">
                       GOCHAT<sup className="text-[15px] ">42</sup>
                     </h1>
+                    <Deconnect />
                   </div>
                 </div>
               </div>
@@ -256,7 +257,6 @@ const Chat = ({ socket }) => {
                   messages={messages}
                 />
               </div>
-              <Deconnect />
             </div>
             <div
               ref={chat}
@@ -428,7 +428,7 @@ const Chat = ({ socket }) => {
 };
 const Container = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   .retour {
     display: none;
   }
@@ -478,7 +478,7 @@ const Container = styled.div`
       width: 100%;
     }
     #chat {
-      width: 100vw;
+      width: 100%;
       height: 95%;
     }
   }

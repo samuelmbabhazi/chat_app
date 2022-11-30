@@ -251,12 +251,12 @@ const Container = styled.div`
 
     input {
       background-color: transparent;
-      padding: 1rem;
+      padding: 0.8rem;
       border-bottom: 0.1rem solid black;
       border-radius: 0.4rem;
-      color: gray;
+      color: black;
       width: 100%;
-      font-size: 0.7rem;
+      font-size: 1rem;
       transition: all 0.15s ease;
     }
 
@@ -291,7 +291,10 @@ const Container = styled.div`
       display: none;
     }
     form {
-      width: 100%;
+      width: 100vw;
+      input {
+        width: 100vh;
+      }
     }
   }
 `;
