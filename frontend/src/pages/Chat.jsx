@@ -148,9 +148,8 @@ const Chat = ({ socket }) => {
   const changeChat = (id, name) => {
     settoId(id);
     settoUser(name);
-    leftbar.current.classList.add("displayNone");
-    rightbar.current.classList.add("displayNone");
-    arrow.current.classList.add("visible");
+    leftbar.current.style.display = "none";
+    rightbar.current.style.display = "none";
   };
   const mobileClic = () => {
     document.querySelector("#leftbar").classList.add("displayBlock");
