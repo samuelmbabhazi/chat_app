@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { messageget, usersRouter } from "../utils/Api";
@@ -22,6 +22,9 @@ const Chat = ({ socket }) => {
   const [input, setInput] = useState("");
   let converse = [];
   let array = [];
+  const leftbar = useRef();
+  const rightbar = useRef();
+  const arrow = useRef();
 
   //fonction de formatage de la date
 
@@ -145,9 +148,9 @@ const Chat = ({ socket }) => {
   const changeChat = (id, name) => {
     settoId(id);
     settoUser(name);
-    document.querySelector("#leftbar").classList.add("displayNone");
-    document.querySelector("#rightbar").classList.add("displayNone");
-    document.querySelector(".retour").classList.add("visible");
+    leftbar.current.classList.add("displayNone");
+    rightbar.current.classList.add("displayNone");
+    arrow.current.classList.add("visible");
   };
   const mobileClic = () => {
     document.querySelector("#leftbar").classList.add("displayBlock");
@@ -171,6 +174,7 @@ const Chat = ({ socket }) => {
         <div className="flex h-screen antialiased text-gray-800">
           <div className="flex flex-row h-full w-full overflow-x-hidden">
             <div
+              ref={leftbar}
               id="leftbar"
               className="flex flex-col   py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 "
             >
@@ -237,7 +241,11 @@ const Chat = ({ socket }) => {
             <div className="flex flex-col flex-auto h-full p-6 ">
               <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
                 <button className="flex flex-row items-center   p-2">
-                  <button onClick={() => mobileClic()} className="retour">
+                  <button
+                    ref={arrow}
+                    onClick={() => mobileClic()}
+                    className="retour"
+                  >
                     <FiArrowLeft />
                   </button>
                   <div className="overflow-hidden relative w-10 h-10 bg-opacity-25 backdrop-filter backdrop-blur-lg  rounded-full  dark:bg-gray-600">
@@ -351,6 +359,7 @@ const Chat = ({ socket }) => {
             </div>
             {/* //rightbar */}
             <div
+              ref={rightbar}
               id="rightbar"
               className="flex flex-col py-8 pl-6 pr-2 w-56 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0"
             >
@@ -396,7 +405,9 @@ const Chat = ({ socket }) => {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-
+  .retour {
+    visibility: hidden;
+  }
   #mobile {
     display: none;
   }
