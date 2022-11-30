@@ -332,7 +332,7 @@ const Chat = ({ socket }) => {
                         name="message"
                         type="text"
                         value={input}
-                        placeholder="Tap Your Message Here"
+                        placeholder="Tap Your Message "
                         className="flex w-full focus border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                         onChange={(e) => handleChange(e)}
                       />
@@ -398,7 +398,7 @@ const Chat = ({ socket }) => {
 
                 <div
                   id="contact"
-                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-screen overflow-y-auto "
+                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-5/6 overflow-y-auto "
                 >
                   {users &&
                     users.map((name, index) => {
