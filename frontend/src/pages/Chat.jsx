@@ -161,7 +161,10 @@ const Chat = ({ socket }) => {
       <Container>
         <div className="flex h-screen antialiased text-gray-800">
           <div className="flex flex-row h-full w-full overflow-x-hidden">
-            <div className="flex flex-col py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 ">
+            <div
+              id="leftbar"
+              className="flex flex-col   py-8 pl-6 pr-2 w-64 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 "
+            >
               <div className="flex flex-row items-center justify-center h-12 w-full ">
                 <div className=" font-bold text-2xl">
                   <div className="brand flex items-center ">
@@ -326,7 +329,10 @@ const Chat = ({ socket }) => {
               </div>
             </div>
             {/* //rightbar */}
-            <div className="flex flex-col py-8 pl-6 pr-2 w-56 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0">
+            <div
+              id="rightbar"
+              className="flex flex-col py-8 pl-6 pr-2 w-56 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0"
+            >
               <div className="flex flex-col mt-3">
                 <div className="flex flex-row items-center justify-between text-xs">
                   <span className="font-bold w-[100%] justify-center">
@@ -378,6 +384,22 @@ const Container = styled.div`
         background-color: black;
       }
     }
+  }
+  @media screen and (max-width: 992px) {
+    #leftbar {
+      width: 20%;
+    }
+    #rightbar {
+      width: 20%;
+    }
+  }
+  @media screen and (max-width: 576px) {
+    #leftbar {
+      z-index: 20;
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 
