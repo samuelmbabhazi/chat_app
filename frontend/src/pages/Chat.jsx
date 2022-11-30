@@ -25,6 +25,9 @@ const Chat = ({ socket }) => {
   const leftbar = useRef();
   const rightbar = useRef();
   const arrow = useRef();
+  const chat = useRef();
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = 620;
 
   //fonction de formatage de la date
 
@@ -32,6 +35,10 @@ const Chat = ({ socket }) => {
     const date = new Date(timestamp);
     return date.toLocaleString();
   }
+
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+  }, []);
 
   //recuperation de l'utilisateur courant
   //_______________________________________________________________________________________________________
@@ -148,12 +155,25 @@ const Chat = ({ socket }) => {
   const changeChat = (id, name) => {
     settoId(id);
     settoUser(name);
-    leftbar.current.style.display = "none";
-    rightbar.current.style.display = "none";
+    if (width < breakpoint) {
+      leftbar.current.style.display = "none";
+      rightbar.current.style.display = "none";
+      arrow.current.display = "block";
+      chat.current.style.display = "block";
+    }
   };
   const mobileClic = () => {
-    document.querySelector("#leftbar").classList.add("displayBlock");
-    document.querySelector("#rightbar").classList.add("displayNone");
+    if (width < breakpoint) {
+      leftbar.current.style.display = "block";
+      rightbar.current.style.display = "none";
+    }
+  };
+  const mobileAllUSer = () => {
+    if (width < breakpoint) {
+      leftbar.current.style.display = "none";
+      rightbar.current.style.display = "block";
+      chat.current.style.display = "none";
+    }
   };
 
   if (users === undefined) {
@@ -220,6 +240,7 @@ const Chat = ({ socket }) => {
                       Conversations
                     </button>{" "}
                     <button
+                      onClick={() => mobileAllUSer()}
                       id="mobile"
                       className="bg-black  hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded"
                     >
@@ -237,7 +258,11 @@ const Chat = ({ socket }) => {
               </div>
               <Deconnect />
             </div>
-            <div className="flex flex-col flex-auto h-full p-6 ">
+            <div
+              ref={chat}
+              id="chat"
+              className="flex flex-col flex-auto h-full p-6 "
+            >
               <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] rounded-xl h-full  ">
                 <button className="flex flex-row items-center   p-2">
                   <button
@@ -373,7 +398,7 @@ const Chat = ({ socket }) => {
 
                 <div
                   id="contact"
-                  className="flex flex-col space-y-1 mt-4  h-96 overflow-y-auto "
+                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-screen overflow-y-auto "
                 >
                   {users &&
                     users.map((name, index) => {
@@ -405,7 +430,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   .retour {
-    visibility: hidden;
+    display: none;
   }
   #mobile {
     display: none;
@@ -428,6 +453,10 @@ const Container = styled.div`
     }
   }
   @media screen and (max-width: 576px) {
+    width: 100vw;
+    .retour {
+      display: block;
+    }
     #spanmob {
       display: flex;
       gap: 10%;
@@ -444,6 +473,13 @@ const Container = styled.div`
     }
     #leftbar {
       width: 100%;
+    }
+    #rightbar {
+      width: 100%;
+    }
+    #chat {
+      width: 100vw;
+      height: 95%;
     }
   }
   @media screen and (max-width: 350px) {
