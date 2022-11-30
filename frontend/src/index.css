@@ -23,6 +23,10 @@ body {
 @media screen and (max-width: 992px) {
 }
 @media screen and (max-width: 576px) {
+  body {
+    background: none;
+    background-color: white;
+  }
   .displayBlock {
     display: flex;
   }
