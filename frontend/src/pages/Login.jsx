@@ -205,12 +205,13 @@ const FormContainer = styled.div`
 
     input {
       background-color: transparent;
-      padding: 1rem;
+      padding: 0.7rem;
       border-bottom: 0.1rem solid black;
       border-radius: 0.4rem;
-      color: gray;
+      color: black;
       width: 100%;
-      font-size: 0.7rem;
+      font-size: 1rem;
+      line-height: 2rem;
       transition: all 0.15s ease;
     }
 
@@ -265,6 +266,12 @@ const FormContainer = styled.div`
   @media screen and (max-width: 900px) {
     .text {
       display: none;
+    }
+    form {
+      width: 100vw;
+      input {
+        width: 100vh;
+      }
     }
   }
 `;
