@@ -14,7 +14,7 @@ const Users = ({ myusers, changeChat, messages }) => {
               onClick={() => changeChat(name._id, name.username)}
               className="flex flex-row items-center hover:border-b-2 hover:border-black border-b-[1px] border-[#f5f5f5]  p-2"
             >
-              <div className="flex items-center justify-center h-8 w-8 bg-black rounded-full text-white">
+              <div className="flex items-center justify-center h-8 w-8 max-[620px]:h-12 max-[620px]:w-12 bg-black rounded-full text-white">
                 {name.username[0]?.toUpperCase()}
               </div>
               <div className="ml-2 text-sm font-semibold">
