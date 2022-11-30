@@ -414,6 +414,9 @@ const Container = styled.div`
       width: 40%;
     }
     #mobconver {
+      background-color: white;
+      border: 1px solid;
+      color: black;
       width: 45%;
     }
     #leftbar {

@@ -20,3 +20,5 @@ body {
   background-repeat: repeat;
   background-size: cover;
 }
+@media screen and (max-width: 576px) {
+}
