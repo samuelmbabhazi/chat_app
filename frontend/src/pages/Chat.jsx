@@ -200,9 +200,18 @@ const Chat = ({ socket }) => {
 
               <div className="flex flex-col mt-3 ">
                 <div className="flex flex-row items-center justify-between text-xs">
-                  <span className="font-bold w-[100%]">
-                    <button className="bg-black w-[100%] hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded">
+                  <span id="spanmob" className="font-bold w-[100%]">
+                    <button
+                      id="mobconver"
+                      className="bg-black w-[100%] hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded"
+                    >
                       Conversations
+                    </button>{" "}
+                    <button
+                      id="mobile"
+                      className="bg-black  hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded"
+                    >
+                      All users
                     </button>{" "}
                   </span>
                 </div>
@@ -375,7 +384,9 @@ const Chat = ({ socket }) => {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-
+  #mobile {
+    display: none;
+  }
   #contact {
     margin-right: 5px;
     &::-webkit-scrollbar {
@@ -394,6 +405,17 @@ const Container = styled.div`
     }
   }
   @media screen and (max-width: 576px) {
+    #spanmob {
+      display: flex;
+      gap: 10%;
+    }
+    #mobile {
+      display: block;
+      width: 40%;
+    }
+    #mobconver {
+      width: 40%;
+    }
     #leftbar {
       z-index: 20;
       width: 100%;
