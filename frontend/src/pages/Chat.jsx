@@ -444,7 +444,6 @@ const Container = styled.div`
       width: 45%;
     }
     #leftbar {
-      z-index: 20;
       width: 100%;
     }
   }
