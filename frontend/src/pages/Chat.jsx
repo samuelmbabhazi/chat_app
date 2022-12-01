@@ -263,7 +263,7 @@ const Chat = ({ socket }) => {
               id="chat"
               className="flex flex-col flex-auto h-full  min-[620px]:p-6 "
             >
-              <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] min-[620px]:rounded-xl h-full  ">
+              <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] min-[620px]:rounded-xl h-[100vh]  ">
                 <button className="flex flex-row items-center   p-2">
                   <button
                     ref={arrow}
@@ -336,7 +336,7 @@ const Chat = ({ socket }) => {
                         className="flex w-full focus border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                         onChange={(e) => handleChange(e)}
                       />
-                      <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
+                      {/* <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
                         <svg
                           className="w-6 h-6"
                           fill="none"
@@ -351,7 +351,7 @@ const Chat = ({ socket }) => {
                             d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                           ></path>
                         </svg>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   <div className="ml-4">
@@ -389,10 +389,20 @@ const Chat = ({ socket }) => {
             >
               <div className="flex flex-col mt-3">
                 <div className="flex flex-row items-center justify-between text-xs">
-                  <span className="font-bold w-[100%] justify-center">
-                    <button className="bg-black w-[100%] hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4  rounded">
-                      All users
-                    </button>
+                  <span id="spanmob" className="font-bold w-[100%]">
+                    <button
+                      id="mobconver"
+                      className="bg-black w-[100%] hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded"
+                    >
+                      All Users
+                    </button>{" "}
+                    <button
+                      onClick={() => mobileClic()}
+                      id="mobile"
+                      className="bg-black  hover:bg-white hover:text-black hover:border hover:border-black text-white font-bold py-2 px-2 rounded"
+                    >
+                      Conversations
+                    </button>{" "}
                   </span>
                 </div>
 
