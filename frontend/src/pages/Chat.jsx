@@ -209,9 +209,9 @@ const Chat = ({ socket }) => {
                 </div>
               </div>
               <div className="flex flex-col items-center	">
-                <div className="overflow-hidden  relative w-10 h-10 max-[620px]:h-12 max-[620px]:h-12  rounded-full  dark:bg-gray-600">
+                <div className="overflow-hidden  relative w-10 h-10  rounded-full  dark:bg-gray-600">
                   <svg
-                    className="absolute -left-1 w-12 h-12 max-[620px]:h-14 max-[620px]:W-14 text-black"
+                    className="absolute -left-1 w-12 h-12  text-black"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
