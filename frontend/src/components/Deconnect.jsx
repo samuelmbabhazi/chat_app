@@ -11,7 +11,7 @@ const Deconnect = () => {
   return (
     <button
       onClick={handleClick}
-      className="bg-black hover:bg-white hover:text-black hover:border hover:border-black mx-[48px] mx-l-[0px] text-white my-3 w-8 font-bold py-1 px-2 rounded "
+      className="bg-black hover:bg-white hover:text-black hover:border hover:border-black ml-[48px]  text-white my-3 w-8 font-bold py-1 px-2 rounded "
     >
       <FiLogOut />
     </button>
