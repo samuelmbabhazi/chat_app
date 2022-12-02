@@ -14,6 +14,7 @@ const Chat = ({ socket }) => {
   const [users, setUsers] = useState([]);
   const [messages, setmessage] = useState();
   const [currentuser, setCurrentuser] = useState(undefined);
+  const [currentusermail, setCurrentusermail] = useState(undefined);
   const [currentId, setCurrentId] = useState(
     JSON.parse(localStorage.getItem("userId"))
   );
@@ -25,6 +26,7 @@ const Chat = ({ socket }) => {
   const leftbar = useRef();
   const rightbar = useRef();
   const arrow = useRef();
+  const container = useRef();
   const chat = useRef();
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 620;
@@ -48,6 +50,7 @@ const Chat = ({ socket }) => {
         navigate("/login");
       } else {
         setCurrentuser(await JSON.parse(localStorage.getItem("user")));
+        setCurrentusermail(await JSON.parse(localStorage.getItem("email")));
         setCurrentId(await JSON.parse(localStorage.getItem("userId")));
       }
     };
@@ -149,12 +152,27 @@ const Chat = ({ socket }) => {
   const handleChange = (event) => {
     setInput(event.target.value);
   };
+
+  const scrollToBottom = (timedelay = 0) => {
+    let scrollId;
+    let height = 0;
+    let minScrollHeight = 100;
+    scrollId = setInterval(function () {
+      if (height <= document.body.scrollHeight) {
+        window.scrollBy(0, minScrollHeight);
+      } else {
+        clearInterval(scrollId);
+      }
+      height += minScrollHeight;
+    }, timedelay);
+  };
   //______________________________________________________________________________________________________
   //fonction de changement de chat
 
   const changeChat = (id, name) => {
     settoId(id);
     settoUser(name);
+
     if (width < breakpoint) {
       leftbar.current.style.display = "none";
       rightbar.current.style.display = "none";
@@ -162,6 +180,7 @@ const Chat = ({ socket }) => {
       chat.current.style.display = "block";
     }
   };
+
   const mobileClic = () => {
     if (width < breakpoint) {
       leftbar.current.style.display = "block";
@@ -197,15 +216,22 @@ const Chat = ({ socket }) => {
               id="leftbar"
               className="flex flex-col py-8 pl-6 pr-2 w-64 text-black max-[620px]:p-0 bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 "
             >
-              <div className="flex flex-row items-center justify-center max-[620px]:border-b-2 bg-[gray] max-[620px]:border-[gray]  w-full  ">
+              <div className="flex flex-row items-center justify-center max-[620px]:border-b-2 max-[620px]:bg-[gray] max-[620px]:border-[gray]  w-full  ">
                 <div className=" font-bold text-2xl">
                   <div className="brand flex py-3 gap-12 items-center ">
-                    <div className="flex flex-col min-[620px]:hidden  	">
+                    <div
+                      className="flex justify-end gap-28
+items-end min-[620px]:hidden "
+                    >
+                      <span className="text-white">
+                        Hello,{currentuser} 👋{" "}
+                      </span>
+
                       <a href="/profil">
-                        <div className="overflow-hidden  relative w-10 h-10  rounded-full  dark:bg-gray-600">
+                        <div className="overflow-hidden  relative w-10 h-10 border-[gray] rounded-full  bg-white dark:bg-black">
                           <svg
                             className="absolute -left-1 w-12 h-12  text-black"
-                            fill="currentColor"
+                            fill="currentcolor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -218,15 +244,8 @@ const Chat = ({ socket }) => {
                         </div>
                       </a>
                     </div>
-                    <div className="flex">
-                      <img src="lo.png" alt="" width={40} />
-                      <h1 className="">
-                        GOCHAT<sup className="text-[15px] ">42</sup>
-                      </h1>
-                    </div>
                   </div>
                 </div>
-                <Deconnect />
               </div>
               <div className="flex flex-col items-center max-[620px]:hidden	">
                 <div className="overflow-hidden  relative w-10 h-10  rounded-full  dark:bg-gray-600">
@@ -312,6 +331,7 @@ const Chat = ({ socket }) => {
                   </div>
                 </button>
                 <div
+                  ref={container}
                   id="contact"
                   className="flex flex-col h-full  overflow-x-auto mb-4"
                 >
