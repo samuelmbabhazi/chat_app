@@ -228,10 +228,10 @@ items-end min-[620px]:hidden "
                       </span>
 
                       <a href="/profil">
-                        <div className="overflow-hidden  relative w-10 h-10 border-[gray] rounded-full  bg-white dark:bg-black">
+                        <div className="overflow-hidden  relative w-10 h-10 border-[gray] rounded-full  bg-white ">
                           <svg
                             className="absolute -left-1 w-12 h-12  text-black"
-                            fill="currentcolor"
+                            fill="black"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
                           >
