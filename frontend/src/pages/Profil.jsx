@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import Deconnect from "../components/Deconnect";
 
 const Profil = () => {
   const [currentuser, setCurrentuser] = useState(undefined);
@@ -33,6 +34,7 @@ const Profil = () => {
       <button className="bg-black hover:bg-white  hover:text-black hover:border hover:border-black text-white font-bold py-2 px-4 mx-3 rounded">
         Set Profil
       </button>
+      <Deconnect />
     </Container>
   );
 };

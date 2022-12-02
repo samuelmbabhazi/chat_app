@@ -1,12 +1,6 @@
 import React from "react";
 
-const Message = ({
-  messages,
-  toId,
-  currentId,
-
-  formatDateFromTimestamp,
-}) => {
+const Message = ({ messages, toId, currentId, formatDateFromTimestamp }) => {
   return (
     <>
       <div className="flex flex-col h-full">

@@ -45,6 +45,7 @@ const Login = ({ socket }) => {
       localStorage.setItem("token", JSON.stringify(data.token));
       console.log("bien connecter");
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("email", JSON.stringify(data.email));
       localStorage.setItem("userId", JSON.stringify(data.userId));
       socket.emit("connected", { username });
       navigate("/");
