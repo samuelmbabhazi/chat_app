@@ -223,9 +223,14 @@ const Chat = ({ socket }) => {
                       className="flex justify-end gap-28
 items-end min-[620px]:hidden "
                     >
-                      <span className="text-white">
-                        Hello,{currentuser} 👋{" "}
-                      </span>
+                      <div className="flex flex-col">
+                        <div className="text-[20px] font-bold mt-2 text-white">
+                          Hello,{currentuser} 👋
+                        </div>
+                        <div className="text-xs text-gray-500 text-[#2e2d2d]">
+                          {currentusermail}
+                        </div>
+                      </div>
 
                       <a href="/profil">
                         <div className="overflow-hidden  relative w-10 h-10 border-[gray] rounded-full  bg-white ">
