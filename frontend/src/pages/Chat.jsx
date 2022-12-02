@@ -261,9 +261,9 @@ const Chat = ({ socket }) => {
             <div
               ref={chat}
               id="chat"
-              className="flex flex-col flex-auto h-full  min-[620px]:p-6 "
+              className="flex flex-col flex-auto h-full   min-[620px]:p-6 "
             >
-              <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] min-[620px]:rounded-xl h-[95vh]  ">
+              <div className="flex flex-col flex-auto flex-shrink-0   bg-[#e6e4e2] min-[620px]:rounded-xl h-[95vh] max-[620px]:h-[100vh] ">
                 <button className="flex flex-row items-center   p-2">
                   <button
                     ref={arrow}
@@ -293,7 +293,7 @@ const Chat = ({ socket }) => {
                 </button>
                 <div
                   id="contact"
-                  className="flex flex-col h-full px-14 overflow-x-auto mb-4"
+                  className="flex flex-col h-full  overflow-x-auto mb-4"
                 >
                   {toId === undefined ? (
                     <Welcome />
