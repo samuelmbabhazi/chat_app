@@ -428,7 +428,7 @@ const Chat = ({ socket }) => {
 
                 <div
                   id="contact"
-                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-5/6 overflow-y-auto "
+                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-auto overflow-y-auto "
                 >
                   {users &&
                     users.map((name, index) => {
