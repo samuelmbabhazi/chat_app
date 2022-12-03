@@ -11,7 +11,7 @@ import { FiArrowLeft } from "react-icons/fi";
 
 const Chat = ({ socket }) => {
   const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(undefined);
   const [messages, setmessage] = useState();
   const [currentuser, setCurrentuser] = useState(undefined);
   const [currentusermail, setCurrentusermail] = useState(undefined);
@@ -197,13 +197,24 @@ const Chat = ({ socket }) => {
 
   if (users === undefined) {
     return (
-      <div className="fixed top-0 right-0 h-screen w-screen z-50 flex-col flex justify-center items-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-        <br />
-        Loading...
-        <p className="w-1/3 text-center text-[gray]">
-          This may take a few seconds, please don't close this page.
-        </p>
+      <div className=" flex flex-col ">
+        <div className="brand items-center max-[620px]: justify-center  mt-12 flex">
+          <img src="lo.png" alt="" width={50} />
+          <h1 className="font-bold text-lg">
+            GoChat<sup>42</sup>
+          </h1>
+        </div>
+        <div className="flex flex-col mx-[30%] my-[12%] h-full max-[620px]:mt-[50%] max-[620px]:ml-[15%]">
+          <img src="s1.svg" alt="" width={300} />
+        </div>
+        <div className="fixed top-52 right-0 h-screen w-screen  flex-col flex justify-center items-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
+          <br />
+          Loading...
+          <p className="w-1/3 text-center text-[gray]">
+            This may take a few seconds, please don't close this page.
+          </p>
+        </div>
       </div>
     );
   } else {
@@ -253,6 +264,12 @@ items-end min-[620px]:hidden "
                 </div>
               </div>
               <div className="flex flex-col items-center max-[620px]:hidden	">
+                <div className="brand items-center flex">
+                  <img src="lo.png" alt="" width={30} />
+                  <h1 className="font-bold">
+                    GoChat<sup>42</sup>
+                  </h1>
+                </div>
                 <div className="overflow-hidden  relative w-10 h-10  rounded-full  dark:bg-gray-600">
                   <svg
                     className="absolute -left-1 w-12 h-12  text-black"
