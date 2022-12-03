@@ -11,7 +11,7 @@ const Message = ({ messages, toId, currentId, formatDateFromTimestamp }) => {
                 return (
                   <div
                     key={key}
-                    className="col-start-1 col-end-11   rounded-lg"
+                    className="col-start-1 col-end-12   rounded-lg"
                   >
                     <div className="flex items-center justify-start flex-row-reverse  ">
                       <div className="relative flex  gap-2 text-sm bg-black py-2 px-2 shadow rounded-xl text-white">
@@ -26,7 +26,7 @@ const Message = ({ messages, toId, currentId, formatDateFromTimestamp }) => {
               } else if (mes.to === currentId && mes.from === toId) {
                 const mymes = mes.message;
                 return (
-                  <div key={key} className="col-start-2 col-end-11  rounded-lg">
+                  <div key={key} className="col-start-1 col-end-12  rounded-lg">
                     <div className="flex flex-row items-center">
                       <div className="relative flex  gap-2 text-sm bg-white py-2 px-2 shadow rounded-xl text-black">
                         <div>{mymes}</div>
