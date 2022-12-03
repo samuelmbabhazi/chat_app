@@ -214,7 +214,7 @@ const Container = styled.div`
     input {
       &:focus {
         padding-top: 1.2rem;
-        border: 0.1rem solid black;
+
         outline: none;
       }
     }
