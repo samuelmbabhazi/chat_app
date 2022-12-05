@@ -11,44 +11,43 @@ chaque utilisateur peut envoyer un message a n'importe quel autre utilisateur
 
 ## Backend
 
-### Express js
+Express js
 
 ## Base de donnees
 
-### Mongo db
+Mongo db
 
-### Mongoose(odm)
+Mongoose(odm)
 
 ## Frontend
 
-### React js
+React js
 
 # Fonctionalite
 
-## Creation de compte
+Creation de compte
 
-## Authentification
+Authentification
 
-## Acces a tout les utilisateur
+Acces a tout les utilisateur
 
-## Envoi de message et reception en temp reel
+Envoi de message et reception en temp reel
 
 # Fonctionnalite a venir
 
-## Modification de profile
+Modification de profile
 
-## Creation des channels de chat
-
-## envoi des images
+Creation des channels de chat
+envoi des images
 
 # Comment installer et exécuter le projet
 
-## Cloner le project depuis Github
+Cloner le project depuis Github
 
-## faire npm install dans votre terminal cote (frontend et backend)
+faire npm install dans votre terminal cote (frontend et backend)
 
-## suivre le model de mon fichier .env.example
+suivre le model de mon fichier .env.example
 
-## demarrer votre serveur avec npm start cote backend
+demarrer votre serveur avec npm start cote backend
 
-## demarrer le frontend avec npm start cote frontend
+demarrer le frontend avec npm start cote frontend
