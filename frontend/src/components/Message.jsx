@@ -4,14 +4,14 @@ const Message = ({ messages, toId, currentId, formatDateFromTimestamp }) => {
   return (
     <>
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-12 gap-y-2">
+        <div className="grid grid-cols-12 gap-y-2 ">
           {messages &&
             messages.map((mes, key) => {
               if (mes.to === toId && mes.from === currentId) {
                 return (
                   <div
                     key={key}
-                    className="col-start-1 col-end-11   rounded-lg"
+                    className="col-start-1 col-end-12   rounded-lg"
                   >
                     <div className="flex items-center justify-start flex-row-reverse  ">
                       <div className="relative flex  gap-2 text-sm bg-black py-2 px-2 shadow rounded-xl text-white">
@@ -26,7 +26,7 @@ const Message = ({ messages, toId, currentId, formatDateFromTimestamp }) => {
               } else if (mes.to === currentId && mes.from === toId) {
                 const mymes = mes.message;
                 return (
-                  <div key={key} className="col-start-2 col-end-11  rounded-lg">
+                  <div key={key} className="col-start-2 col-end-12  rounded-lg">
                     <div className="flex flex-row items-center">
                       <div className="relative flex  gap-2 text-sm bg-white py-2 px-2 shadow rounded-xl text-black">
                         <div>{mymes}</div>

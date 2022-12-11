@@ -225,7 +225,7 @@ const Chat = ({ socket }) => {
             <div
               ref={leftbar}
               id="leftbar"
-              className="flex flex-col py-8 pl-6 pr-2 w-64 text-black max-[620px]:p-0 bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 "
+              className="flex flex-col py-1 pl-6 pr-2 w-64 text-black max-[620px]:p-0 bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0 "
             >
               <div className="flex flex-row items-center justify-center max-[620px]:border-b-2 max-[620px]:bg-[gray] max-[620px]:border-[gray]  w-full  ">
                 <div className=" font-bold text-2xl">
@@ -263,35 +263,35 @@ items-end min-[620px]:hidden "
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center max-[620px]:hidden	">
-                <div className="brand items-center flex">
-                  <img src="lo.png" alt="" width={30} />
-                  <h1 className="font-bold">
-                    GoChat<sup>42</sup>
-                  </h1>
-                </div>
-                <div className="overflow-hidden  relative w-10 h-10  rounded-full  dark:bg-gray-600">
-                  <svg
-                    className="absolute -left-1 w-12 h-12  text-black"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <div className="text-sm font-semibold mt-2 text-black">
-                  <a href="/profil">{currentuser}</a>
-                </div>
-                <div className="text-xs text-gray-500 text-gray">
-                  Developper
+              <div
+                className="flex  justify-end justify-between
+items-end "
+              >
+                <a href="/profil">
+                  <div className="overflow-hidden  relative w-10 h-10 border-[gray] rounded-full  bg-white ">
+                    <svg
+                      className="absolute -left-1 w-12 h-12  text-black"
+                      fill="black"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+                <div className="flex flex-col">
+                  <div className="text-[20px] font-bold mt-2 text-white">
+                    Hello,{currentuser} 👋
+                  </div>
+                  <div className="text-xs text-gray-500 text-[#2e2d2d]">
+                    {currentusermail}
+                  </div>
                 </div>
               </div>
-
               <div className="flex flex-col mt-3 max-[620px]:mx-6 ">
                 <div className="flex flex-row items-center justify-between text-xs">
                   <span id="spanmob" className="font-bold w-[100%]">
