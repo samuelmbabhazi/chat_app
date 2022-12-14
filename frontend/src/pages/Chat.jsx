@@ -293,7 +293,7 @@ items-end max-[620px]:hidden"
                 </div>
               </div>
               <div className="flex flex-col mt-3 max-[620px]:mx-6 ">
-                <div className="flex flex-row items-center justify-between text-xs">
+                <div className="flex flex-row items-center justify-between text-xs max-[620px]:bg-[gray]">
                   <span id="spanmob" className="font-bold w-[100%]">
                     <button
                       id="mobconver"
@@ -450,7 +450,7 @@ items-end max-[620px]:hidden"
               className="flex flex-col py-8 pl-6 pr-2 w-56 text-black bg-opacity-25 backdrop-filter backdrop-blur-lg flex-shrink-0"
             >
               <div className="flex flex-col mt-3">
-                <div className="flex flex-row items-center justify-between text-xs">
+                <div className="flex flex-row items-center justify-between text-xs max-[620px]:bg-[gray]">
                   <span id="spanmob" className="font-bold w-[100%]">
                     <button
                       id="mobconver"
