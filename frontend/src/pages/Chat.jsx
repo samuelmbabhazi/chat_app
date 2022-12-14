@@ -265,7 +265,7 @@ items-end min-[620px]:hidden "
               </div>
               <div
                 className="flex  justify-end justify-between
-items-end "
+items-end max-[620px]:hidden"
               >
                 <a href="/profil">
                   <div className="overflow-hidden  relative w-10 h-10 border-[gray] rounded-full  bg-white ">
@@ -470,7 +470,7 @@ items-end "
 
                 <div
                   id="contact"
-                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-auto overflow-y-auto "
+                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:max-[620px]:h-[85vh] overflow-y-auto "
                 >
                   {users &&
                     users.map((name, index) => {
