@@ -299,7 +299,7 @@ items-end max-[620px]:hidden"
                 <div className="flex flex-col">
                   <div
                     id="contact"
-                    className="flex flex-col space-y-1 mt-4  max-[620px]:flex-row  overflow-y-auto "
+                    className="flex flex-col space-y-1 mt-4  max-[620px]:flex-row min-[620px]:hidden  overflow-y-auto "
                   >
                     {users &&
                       users.map((name, index) => {
