@@ -5,7 +5,6 @@ import { messageget, usersRouter } from "../utils/Api";
 import Message from "../components/Message";
 import Users from "../components/Users";
 import { useNavigate } from "react-router-dom";
-import Deconnect from "../components/Deconnect";
 import Welcome from "../components/Welcome";
 import { FiArrowLeft } from "react-icons/fi";
 
@@ -55,7 +54,7 @@ const Chat = ({ socket }) => {
       }
     };
     confUser();
-  }, []);
+  }, [navigate]);
 
   //___________________________________________________________________________________________________________
   useEffect(() => {
@@ -98,7 +97,7 @@ const Chat = ({ socket }) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [currentId]);
 
   console.log(messages);
   //_______________________________________________________________________________________________
@@ -153,19 +152,6 @@ const Chat = ({ socket }) => {
     setInput(event.target.value);
   };
 
-  const scrollToBottom = (timedelay = 0) => {
-    let scrollId;
-    let height = 0;
-    let minScrollHeight = 100;
-    scrollId = setInterval(function () {
-      if (height <= document.body.scrollHeight) {
-        window.scrollBy(0, minScrollHeight);
-      } else {
-        clearInterval(scrollId);
-      }
-      height += minScrollHeight;
-    }, timedelay);
-  };
   //______________________________________________________________________________________________________
   //fonction de changement de chat
 
@@ -310,13 +296,47 @@ items-end max-[620px]:hidden"
                     </button>{" "}
                   </span>
                 </div>
-
-                <Users
-                  myusers={myUsers}
-                  changeChat={changeChat}
-                  settoId={settoId}
-                  messages={messages}
-                />
+                <div className="flex flex-col">
+                  <div
+                    id="contact"
+                    className="flex flex-col space-y-1 mt-4  max-[620px]:flex-row  overflow-y-auto "
+                  >
+                    {users &&
+                      users.map((name, index) => {
+                        return (
+                          <button
+                            key={index}
+                            onClick={() => changeChat(name._id, name.username)}
+                            className="flex flex-row items-center max-[620px]:flex-col hover:border-b-2 hover:border-black  p-2"
+                          >
+                            <div className="overflow-hidden  relative w-10 h-10 border-[gray] rounded-full  bg-black ">
+                              <svg
+                                className="absolute -left-1 w-12 h-12  text-black"
+                                fill="white"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                  clipRule="evenodd"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div className="ml-2 text-sm font-semibold">
+                              {name.username}
+                            </div>
+                          </button>
+                        );
+                      })}
+                  </div>
+                  <Users
+                    myusers={myUsers}
+                    changeChat={changeChat}
+                    settoId={settoId}
+                    messages={messages}
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -470,7 +490,7 @@ items-end max-[620px]:hidden"
 
                 <div
                   id="contact"
-                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:max-[620px]:h-[85vh] overflow-y-auto "
+                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-[85vh] max-[620px]:flex-row  overflow-y-auto "
                 >
                   {users &&
                     users.map((name, index) => {
@@ -478,7 +498,7 @@ items-end max-[620px]:hidden"
                         <button
                           key={index}
                           onClick={() => changeChat(name._id, name.username)}
-                          className="flex flex-row items-center hover:border-b-2 hover:border-black border-b-[1px] border-[#f5f5f5]  p-2"
+                          className="flex flex-row items-center max-[620px]:flex-col hover:border-b-2 hover:border-black border-b-[1px] border-[#f5f5f5]  p-2"
                         >
                           <div className="flex items-center justify-center h-8 w-8 max-[620px]:h-12 max-[620px]:w-12 bg-black rounded-full text-white">
                             {name.username[0]?.toUpperCase()}
