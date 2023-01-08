@@ -490,7 +490,7 @@ items-end max-[620px]:hidden"
 
                 <div
                   id="contact"
-                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-[85vh] max-[620px]:flex-row  overflow-y-auto "
+                  className="flex flex-col space-y-1 mt-4  h-96 max-[620px]:h-[85vh]   overflow-y-auto "
                 >
                   {users &&
                     users.map((name, index) => {
@@ -498,7 +498,7 @@ items-end max-[620px]:hidden"
                         <button
                           key={index}
                           onClick={() => changeChat(name._id, name.username)}
-                          className="flex flex-row items-center max-[620px]:flex-col hover:border-b-2 hover:border-black border-b-[1px] border-[#f5f5f5]  p-2"
+                          className="flex flex-row items-center  hover:border-b-2 hover:border-black border-b-[1px] border-[#f5f5f5]  p-2"
                         >
                           <div className="flex items-center justify-center h-8 w-8 max-[620px]:h-12 max-[620px]:w-12 bg-black rounded-full text-white">
                             {name.username[0]?.toUpperCase()}
