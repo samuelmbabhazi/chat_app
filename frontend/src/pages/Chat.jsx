@@ -530,7 +530,8 @@ const Container = styled.div`
   #contact {
     margin-right: 5px;
     &::-webkit-scrollbar {
-      width: 0.2rem;
+      width: 0.1rem;
+      height: 0.1rem;
       &-thumb {
         background-color: black;
       }
