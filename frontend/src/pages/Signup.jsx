@@ -63,12 +63,8 @@ const Register = () => {
         </div>
 
         <form id="form" onSubmit={(event) => handleSubmit(event)}>
-          <div className="brand">
-            <img src="lo.png" alt="" width={70} />
-            <h1>
-              GoChat<sup>42</sup>
-            </h1>
-          </div>
+          <img src="logo2.png" alt="" width={200} />
+
           <label for="inp" className="inp">
             <input
               type="text"
