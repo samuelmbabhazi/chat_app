@@ -270,7 +270,7 @@ items-end max-[620px]:hidden"
                   </div>
                 </a>
                 <div className="flex flex-col">
-                  <div className="text-[20px] font-bold mt-2 text-white">
+                  <div className="text-[20px] font-bold mt-2 text-black">
                     Hello,{currentuser} 👋
                   </div>
                   <div className="text-xs text-gray-500 text-[#2e2d2d]">
