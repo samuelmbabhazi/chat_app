@@ -184,12 +184,7 @@ const Chat = ({ socket }) => {
   if (users === undefined) {
     return (
       <div className=" flex flex-col ">
-        <div className="brand items-center max-[620px]: justify-center  mt-12 flex">
-          <img src="lo.png" alt="" width={50} />
-          <h1 className="font-bold text-lg">
-            GoChat<sup>42</sup>
-          </h1>
-        </div>
+        <img src="logo2.png" alt="" width={250} />
         <div className="flex flex-col mx-[30%] my-[12%] h-full max-[620px]:mt-[50%] max-[620px]:ml-[15%]">
           <img src="s1.svg" alt="" width={300} />
         </div>
