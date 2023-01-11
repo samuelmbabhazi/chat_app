@@ -181,7 +181,7 @@ const Chat = ({ socket }) => {
     }
   };
 
-  if (users !== undefined) {
+  if (users === undefined) {
     return (
       <div className=" flex flex-col justify-center items-center ">
         <img src="logo2.png" alt="" width={250} />
