@@ -1,5 +1,5 @@
-const User = require("../model/usermodel");
-const Messages = require("../model/messagemodel");
+import User from "../model/usermodel";
+import Message from "../model/messagemodel";
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
