@@ -181,11 +181,11 @@ const Chat = ({ socket }) => {
     }
   };
 
-  if (users === undefined) {
+  if (users !== undefined) {
     return (
-      <div className=" flex flex-col ">
+      <div className=" flex flex-col justify-center items-center ">
         <img src="logo2.png" alt="" width={250} />
-        <div className="flex flex-col mx-[30%] my-[12%] h-full max-[620px]:mt-[50%] max-[620px]:ml-[15%]">
+        <div className="flex flex-col mx-[30%]  h-full max-[620px]:mt-[50%] max-[620px]:ml-[15%]">
           <img src="s1.svg" alt="" width={300} />
         </div>
         <div className="fixed top-52 right-0 h-screen w-screen  flex-col flex justify-center items-center">
