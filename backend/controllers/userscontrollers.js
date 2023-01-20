@@ -1,6 +1,5 @@
-import User from "../model/usermodel";
-import Message from "../model/messagemodel";
-
+const Message = require("../model/messagemodel");
+const User = require("../model/usermodel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { default: mongoose } = require("mongoose");
